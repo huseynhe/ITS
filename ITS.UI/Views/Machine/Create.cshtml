@@ -1,0 +1,59 @@
+﻿@model ITS.UI.ModelViews.MachineVM
+@{
+    ViewBag.Title = "Avadanlığın əlavə edilməsi ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", tabindex = 1 } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", tabindex = 2 } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", tabindex = 3 } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", tabindex = 4 } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.MachineGroupID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.MachineGroupID, new SelectList(Model.MachineGroupList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 5 })
+                @Html.ValidationMessageFor(model => model.MachineGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-6 control-label">
+                @Html.ActionLink("Listə Geri Dön", "Index", "Machine", null, new { @class = "btn btn-primary btn-lg btn-block" })
+            </div>
+            <div class="col-md-6 control-label">
+                <input id="frmPosition" type="submit" value="Yarat" class="btn btn-primary btn-lg btn-block" tabindex="9" />
+            </div>
+        </div>
+    </div>
+}
+
+
+

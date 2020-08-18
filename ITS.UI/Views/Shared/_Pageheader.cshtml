@@ -1,0 +1,39 @@
+﻿<div class="page-header position-relative" style="margin-top:10px">
+    <div class="header-title">
+
+        @{
+            if (ViewBag.Title != null)
+            {
+                <h4>
+                    <span class="label label-primary label-ribbon-left">
+                        @ViewBag.Title
+                    </span>
+                </h4>
+            }
+            else
+            {
+                <h4>
+                    <span class="label label-primary label-ribbon-left">
+                        Dashboard
+                    </span>
+
+                </h4>
+            }
+
+        }
+
+    </div>
+    <!--Header Buttons-->
+    <div class="header-buttons">
+        <a class="sidebar-toggler" href="#">
+            <i class="fa fa-arrows-h"></i>
+        </a>
+        <a class="refresh" id="refresh-toggler" href="">
+            <i class="glyphicon glyphicon-refresh"></i>
+        </a>
+        <a class="fullscreen" id="fullscreen-toggler" href="#">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+        </a>
+    </div>
+    <!--Header Buttons End-->
+</div>

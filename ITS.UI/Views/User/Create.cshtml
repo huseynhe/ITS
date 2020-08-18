@@ -1,0 +1,59 @@
+﻿
+@model ITS.UI.ModelViews.UserVM
+@{
+    ViewBag.Title = "İstifadəçi əlavə et";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        <div class="row">
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control form-input", tabindex = 1 } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", tabindex = 2 })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.EmployeeID, new SelectList(Model.EmpmloyeeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control",  id = "EmployeeIDCmb", tabindex = 9 })
+                @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.LockType, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.LockType, new SelectList(Model.LockTypes, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Company", tabindex = 5 })
+                @Html.ValidationMessageFor(model => model.LockType, "", new { @class = "text-danger" })
+            </div>
+
+
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-6 control-label">
+                @Html.ActionLink("Listə Geri Dön", "Index", "User", null, new { @class = "btn btn-primary btn-lg btn-block" })
+
+            </div>
+            <div class="col-md-6 control-label">
+                <input id="frmUser" type="submit" value="Yarat" class="btn btn-primary btn-lg btn-block" tabindex="6" />
+
+            </div>
+        </div>
+    </div>
+
+}
+

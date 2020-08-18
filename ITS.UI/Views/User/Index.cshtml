@@ -1,0 +1,61 @@
+﻿@model ITS.UI.ModelViews.UserVM
+@{
+    ViewBag.Title = "İstifadəçilər";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="clearfix"></div><br />
+
+        <div class="well bs-component">
+
+            @*<h4>
+                    <span class="label label-primary label-ribbon-left">
+
+                        Seçilmiş maşına görə göndərişlər
+                        İşçilər
+
+
+                    </span>
+                </h4>*@
+            <a class="btn btn-warning pull-right btn-icon" href="@Url.Action("Create","User")"><span class="fa fa-plus"></span> Əlavə et</a>
+
+            @*<a class="btn btn-warning active pull-right btn-icon" href="@Url.Action("Add","ServiceBalance", new { vehicleId = Model.vehicleId })"><span class="fa fa-plus"></span> Əlavə et</a>*@
+            <div class="clearfix"></div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="margin:0;">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                @Html.DisplayNameFor(model => model.UserName)
+                                <input onkeyup="Search(this, 'User', 'Index', 'UserName')" class="form-control" placeholder="axtar" />
+                            </th>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                @Html.DisplayNameFor(model => model.LockType)
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                <span title="Əməliyyatlar" class="fa fa-gears"></span>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="AjaxPaginationList">
+                    @Html.Partial("PartialIndex")
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,11 @@
+﻿.form-control {
+    border-radius: 10px !important;
+}
+.form-input {
+    border-radius: 10px !important;
+}
+.select2-selection {
+    border: 2px solid #e2e2e2 !important;
+    border-radius: 10px !important;
+    height: 40px !important;
+}

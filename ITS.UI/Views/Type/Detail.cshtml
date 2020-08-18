@@ -1,0 +1,73 @@
+﻿@model ITS.UI.ModelViews.TypeVM
+@{
+    ViewBag.Title = "Detal";
+    Layout = "";
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+    </button>
+    <h4 class="modal-title">Soraqçalar haqqında məlumat ekranı</h4>
+</div>
+<div class="modal-body">
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ParentID, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                @Html.DisplayFor(model => model.ParentID)
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ParentName, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                @Html.DisplayFor(model => model.ParentName)
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                @Html.DisplayFor(model => model.ID)
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            @if (Model.RTypeList != null)
+            {
+                if (Model.RTypeList.Count > 0)
+                {
+                    <h1 style="text-align:center"><span style="font-weight:bold">@Model.Name </span> üst tipinə bağlı olan  tiplər aşağadakı kimidir! </h1>
+                    foreach (var item in Model.RTypeList)
+                    {
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => Model.ID, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                            @Html.DisplayFor(x => item.ID)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => Model.Name, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                            @Html.DisplayFor(x => item.Name)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(x => Model.Description, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                            @Html.DisplayFor(x => item.Description)
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default"
+            data-dismiss="modal">
+        Close
+    </button>
+</div>

@@ -1,0 +1,47 @@
+﻿@model ITS.UI.ModelViews.TypeVM
+@{
+    ViewBag.Title = "Sorağça redakte et ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-4">
+
+        @Html.HiddenFor(model => model.ID)
+
+        @Html.LabelFor(model => model.ParentName, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(x => Model.ParentID, new SelectList(Model.ParentList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", id = "Company", tabindex = 9 })
+
+        @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-md-4">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="clearfix"></div>
+
+
+    <div class="col-md-8">
+        <input type="submit" value="Təsdiqləyin" class="btn btn-primary active" style="float:right;" />
+    </div>
+
+}
+<div class="clearfix"></div>
+<br />
+

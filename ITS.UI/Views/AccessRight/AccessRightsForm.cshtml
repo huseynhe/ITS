@@ -1,0 +1,99 @@
+﻿@model ITS.UI.ModelViews.AccessRightVM
+
+@{
+    ViewBag.Title = "İstifadəçi icazəsi redaktoru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 align="center">İstifadəçi adı: @ViewBag.Message </h3>
+<br />
+@if (Model.Id == 0)
+{
+    <h3 align="left">Yeni icazənin daxil edilməsi: </h3>
+}
+else
+{
+    <h3 align="left">Mövcud icazənin redaktəsi: </h3>
+}
+@using (Html.BeginForm("Save", "AccessRight", FormMethod.Post))
+{
+    <br />
+    <div class="row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.AntiForgeryToken()
+
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Controller, htmlAttributes: new { @class = "col-md-12 " })
+            @Html.DropDownListFor(m => m.Controller, new SelectList(Model.Controllers, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Controller", @onchange = "FillActions()", tabindex = 1 })
+            @Html.ValidationMessageFor(m => m.Controller, "", new { @class = "text-danger" })
+        </div>
+        @if (Model.Controller == null)
+        {
+            <div id="divAction" class="col-md-2">
+            </div>
+        }
+        else
+        {
+            <div class="col-md-2" id="divAction">
+                @Html.LabelFor(m => m.Action, htmlAttributes: new { @class = "col-md-12 " })
+                @Html.DropDownListFor(m => m.Action, new SelectList(Model.Actions, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Action", tabindex = 2 })
+                @Html.ValidationMessageFor(m => m.Action, "", new { @class = "text-danger" })
+            </div>
+        }
+        <div class="col-md-1">
+            @Html.LabelFor(m => m.AccessType, htmlAttributes: new { @class = "col-md-12 " })
+            <select name="HasAccess" class="form-control">
+                <option value="true" @{ if (Model.AccessType == 1) { Write("selected"); } }>Vardır</option>
+                <option value="false" @{ if (Model.AccessType == 0) { Write("selected"); } }>Yoxdur</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.Id)
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div class="row">
+        <div class="col-md-1  control-label">
+            @Html.ActionLink("Siyahıya qayıt", "Index", "AccessRight", new { UserId = @ViewBag.Data }, new { @class = "btn btn-warning" })
+        </div>
+        <div class="col-md-1 control-label">
+            <button type="submit" class="btn btn-success">Yadda saxla</button>
+        </div>
+    </div>
+}
+
+<script>
+    function FillActions() {
+        var controller = document.getElementById("Controller").value;
+        if (controller != '') {
+            $("#Action").prop("disabled", false);
+
+            $.ajax({
+                method: 'GET',
+                url: '/AccessRight/GetActions',
+                dataType: 'html',
+                data: {
+                    "ControllerName": document.getElementById("Controller").value,
+                },
+                success: function (e) {
+                    $('#divAction').html(e);
+                },
+                error: function (e) {
+                    window.alert('Əməliyyatların siyahısı tapılmadı!');
+                }
+            });
+        }
+        else {
+            $('#divAction').html('');
+            $("#Action").prop("disabled", true);
+        }
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById('pagetitle').innerHTML = 'İSTİFADƏÇİ İCAZƏLƏRİ';
+    });
+</script>

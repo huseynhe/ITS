@@ -1,0 +1,47 @@
+﻿@model ITS.UI.ModelViews.EmployeeVM
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+
+
+
+<div class="col-sm-1 col-sm-offset-11" style="position: absolute;">
+    <span class="label label-danger pull-right badgemargin">@Model.ListCount</span>
+</div>
+
+<table class="table table-bordered">
+    <tbody>
+        @foreach (var item in Model.REmployeeList)
+        {
+            <tr>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.FatherName)
+                </td>
+                <td class="col-md-1" align="center">
+                    @Html.DisplayFor(modelItem => item.GenderTypeDesc)
+                </td>
+
+                <td class="col-md-1 shsingle text-center" style="font-size:16px;">
+                    <a class="btn btn-xs" title="Redaktə et" href="@Url.Action("Edit","Employee", new { id = item.ID})"><span class="fa fa-pencil"></span></a>
+                    <span title="Sil"> @Html.ActionLink(" ", "Delete", "Employee", new { id = item.ID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi?. Buna bağlı bütün detallar və sənədlər silinəcək');", @class = "btn btn-xs glyphicon glyphicon-trash" })</span>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

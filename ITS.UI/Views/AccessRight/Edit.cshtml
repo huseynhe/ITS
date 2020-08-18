@@ -1,0 +1,100 @@
+﻿@model ITS.UI.ModelViews.AccessRightVM
+@{
+    ViewBag.Title = "İstifadəçi icazəsi redaktoru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="clearfix"></div>
+    <br />
+    <div class="well bs-component">
+
+        <div class="form-horizontal" id="frmCreate">
+
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.ControllerDesciption)
+                    @Html.LabelFor(model => model.Controller, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(x => Model.Controller, new SelectList(Model.Controllers, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control select2", id = "ControllerDesc", tabindex = 1 })
+                    @Html.ValidationMessageFor(model => model.Controller, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-4">
+                    @Html.HiddenFor(model => model.ActionDescription)
+                    @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(x => Model.Action, new SelectList(Model.Actions, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control select2", id = "ActionDesc", tabindex = 2 })
+                    @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.AccessType, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(x => Model.AccessType, new SelectList(Model.AccessTypes, "Value", "Text"), htmlAttributes: new { @class = "form-control select2", id = "Company", tabindex = 3 })
+                    @Html.ValidationMessageFor(model => model.AccessType, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-6 control-label">
+
+                    @Html.ActionLink("Listə Geri Dön", "Index", "AccessRight", new { id = Model.Id, userId = Model.UserId }, new { @class = "btn btn-primary btn-lg btn-block", tabindex = "4" })
+                </div>
+                <div class="col-md-6 control-label">
+                    <input id="frmCreate" type="submit" value="Dəyiş" class="btn btn-primary btn-lg btn-block" tabindex="5" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $("body").on("change", "#ControllerDesc", function () {
+            $("#ControllerDesciption").val($(this).find("option:selected").text());
+        });
+        $("body").on("change", "#ActionDesc", function () {
+            $("#ActionDescription").val($(this).find("option:selected").text());
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ControllerDesc").on("change", function () {
+                var contName = $(this).val();
+                var contList = $('#ActionDesc');
+                contList.empty();
+                $.ajax({
+                    url: "/AccessRight/GetActionList?controlerName=" + contName,
+                    dataType: "json",
+                    type: "POST",
+                    success: function (data) {
+                        $.each(data, function (index, option) {
+                            contList.append('<option value=' + option.vaue + '>' + option.Text + '</option>')
+                        });
+
+                    }
+                });
+
+            });
+        });
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
