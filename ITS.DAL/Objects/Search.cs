@@ -20,8 +20,6 @@ namespace ITS.DAL.Objects
         public bool isCount { get; set; }
         public Int64 PId { get; set; }
 
-        public string StructureName { get; set; }
-        public string PositionName { get; set; }
 
         public int PersonId { get; set; }
         public int StructureId { get; set; }
@@ -37,12 +35,10 @@ namespace ITS.DAL.Objects
         public string SurName { get; set; }
         public string FatherName { get; set; }
 
-        public string ApplicationNumber { get; set; }
-        public string OfficialNumber { get; set; }
-        public string ResponseAppNumber { get; set; }
-        public int ApplicationType { get; set; }
-        public string OutFormTypeDesc { get; set; }
-        public int OutFormType { get; set; }
+        public string BusinessCenterName { get; set; }
+        public string MachineGroupName { get; set; }
+        public string MachineName { get; set; }
+        public int Description { get; set; }
 
     }
 }

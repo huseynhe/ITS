@@ -36,6 +36,27 @@
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateUser" Type="int" />
         </EntityType>
+        <EntityType Name="tbl_CareTracking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CareDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BusinessCenterID" Type="int" />
+          <Property Name="MachineGroupID" Type="int" />
+          <Property Name="MachineID" Type="int" />
+          <Property Name="CareDescription" Type="nvarchar(max)" />
+          <Property Name="CareType" Type="int" />
+          <Property Name="PlanedCareType" Type="int" />
+          <Property Name="CareTeamType" Type="int" />
+          <Property Name="ResultType" Type="int" />
+          <Property Name="ResultDescription" Type="nvarchar(max)" />
+          <Property Name="InsertDate" Type="datetime2" Precision="7" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateUser" Type="int" />
+        </EntityType>
         <EntityType Name="tbl_Country">
           <Key>
             <PropertyRef Name="ID" />
@@ -147,6 +168,7 @@
         <EntityContainer Name="ITSModelStoreContainer">
           <EntitySet Name="tbl_AccessRight" EntityType="Self.tbl_AccessRight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_BusinessCenter" EntityType="Self.tbl_BusinessCenter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CareTracking" EntityType="Self.tbl_CareTracking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Country" EntityType="Self.tbl_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Employee" EntityType="Self.tbl_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Machine" EntityType="Self.tbl_Machine" Schema="dbo" store:Type="Tables" />
@@ -169,6 +191,7 @@
           <EntitySet Name="tbl_Region" EntityType="ITSModel.tbl_Region" />
           <EntitySet Name="tbl_Type" EntityType="ITSModel.tbl_Type" />
           <EntitySet Name="tbl_User" EntityType="ITSModel.tbl_User" />
+          <EntitySet Name="tbl_CareTracking" EntityType="ITSModel.tbl_CareTracking" />
         </EntityContainer>
         <EntityType Name="tbl_AccessRight">
           <Key>
@@ -307,6 +330,27 @@
           <Property Name="InsertDate" Type="DateTime" Precision="0" />
           <Property Name="InsertUser" Type="Int32" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_CareTracking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CareDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BusinessCenterID" Type="Int32" />
+          <Property Name="MachineGroupID" Type="Int32" />
+          <Property Name="MachineID" Type="Int32" />
+          <Property Name="CareDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CareType" Type="Int32" />
+          <Property Name="PlanedCareType" Type="Int32" />
+          <Property Name="CareTeamType" Type="Int32" />
+          <Property Name="ResultType" Type="Int32" />
+          <Property Name="ResultDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Precision="7" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateUser" Type="Int32" />
         </EntityType>
         </Schema>
@@ -458,6 +502,28 @@
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CareTracking">
+            <EntityTypeMapping TypeName="ITSModel.tbl_CareTracking">
+              <MappingFragment StoreEntitySet="tbl_CareTracking">
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="ResultDescription" ColumnName="ResultDescription" />
+                <ScalarProperty Name="ResultType" ColumnName="ResultType" />
+                <ScalarProperty Name="CareTeamType" ColumnName="CareTeamType" />
+                <ScalarProperty Name="PlanedCareType" ColumnName="PlanedCareType" />
+                <ScalarProperty Name="CareType" ColumnName="CareType" />
+                <ScalarProperty Name="CareDescription" ColumnName="CareDescription" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="MachineGroupID" ColumnName="MachineGroupID" />
+                <ScalarProperty Name="BusinessCenterID" ColumnName="BusinessCenterID" />
+                <ScalarProperty Name="CareDate" ColumnName="CareDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

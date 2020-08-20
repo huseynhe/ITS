@@ -1498,5 +1498,168 @@ namespace ITS.DAL
 
         }
         #endregion
+
+        #region tbl_CareTracking
+        public tbl_CareTracking AddCareTracking(tbl_CareTracking item)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    item.Status = 1;
+                    item.InsertDate = DateTime.Now;
+                    item.UpdateDate = DateTime.Now;
+                    context.tbl_CareTracking.Add(item);
+                    context.SaveChanges();
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public tbl_CareTracking DeleteCareTracking(int id, int userId)
+        {
+
+            try
+            {
+                tbl_CareTracking oldItem;
+                using (var context = new ITSEntities())
+                {
+
+                    oldItem = (from p in context.tbl_CareTracking
+                               where p.ID == id && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.Status = 0;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = userId;
+                        context.tbl_CareTracking.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+
+                    }
+                }
+
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+                return oldItem;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public List<tbl_CareTracking> GetCareTrackings()
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    var items = (from p in context.tbl_CareTracking
+                                 where p.Status == 1
+                                 select p);
+
+                    return items.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public tbl_CareTracking GetCareTrackingById(Int64 Id)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+
+
+                    var item = (from p in context.tbl_CareTracking
+                                where p.ID == Id && p.Status == 1
+                                select p).FirstOrDefault();
+
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public tbl_CareTracking UpdateCareTracking(tbl_CareTracking item)
+        {
+            try
+            {
+                tbl_CareTracking oldItem;
+                using (var context = new ITSEntities())
+                {
+                    oldItem = (from p in context.tbl_CareTracking
+                               where p.ID == item.ID && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.CareDate = item.CareDate;
+                        oldItem.BusinessCenterID = item.BusinessCenterID;
+                        oldItem.MachineGroupID = item.MachineGroupID;
+                        oldItem.MachineID = item.MachineID;
+                        oldItem.CareDescription = item.CareDescription;
+                        oldItem.CareType = item.CareType;
+                        oldItem.PlanedCareType = item.PlanedCareType;
+                        oldItem.CareTeamType = item.CareTeamType;
+                        oldItem.ResultType = item.ResultType;
+                        oldItem.ResultDescription = item.ResultDescription;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = item.UpdateUser;
+                        context.tbl_CareTracking.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+                        return oldItem;
+                    }
+                }
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        #endregion
     }
 }

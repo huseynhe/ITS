@@ -52,8 +52,10 @@
   <ItemGroup>
     <Compile Include="DataOperations.cs" />
     <Compile Include="DTO\AccessRightDTO.cs" />
+    <Compile Include="DTO\CareTrackingDTO.cs" />
     <Compile Include="DTO\MachineDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\ReportDTO.cs" />
     <Compile Include="DTO\TypeDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Model\Model.Context.cs">
@@ -75,6 +77,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tbl_BusinessCenter.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tbl_CareTracking.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tbl_Country.cs">
@@ -104,11 +109,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccessRightsRepository.cs" />
     <Compile Include="Repositories\BusinessCenterRepository.cs" />
+    <Compile Include="Repositories\CareTrackingRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\MachineGroupRepository.cs" />
     <Compile Include="Repositories\MachineRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
+    <Compile Include="Repositories\ReportRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
   </ItemGroup>

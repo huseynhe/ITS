@@ -316,11 +316,53 @@ namespace ITS.UI.Services
             items.Insert(0, itemtip);
             return new SelectList(items, "Value", "Text");
         }
+        public static IEnumerable<SelectListItem> GetBusinessCenterList()
+        {
+
+            DataOperations dataOperations = new DataOperations();
+            List<SelectListItem> items = dataOperations.GetBusinessCenters()
+                .OrderBy(n => n.Name)
+                    .Select(n =>
+                    new SelectListItem
+                    {
+                        Value = n.ID.ToString(),
+                        Text = n.Name,
+                        //Selected = n.ID == parentID ? true : false
+                    }).ToList();
+            var itemtip = new SelectListItem()
+            {
+                Value = "0",
+                Text = "---  Seçiniz ---"
+            };
+            items.Insert(0, itemtip);
+            return new SelectList(items, "Value", "Text");
+        }
         public static IEnumerable<SelectListItem> GetMachineGroupList()
         {
 
             DataOperations dataOperations = new DataOperations();
             List<SelectListItem> items = dataOperations.GetMachineGroups()
+                .OrderBy(n => n.Name)
+                    .Select(n =>
+                    new SelectListItem
+                    {
+                        Value = n.ID.ToString(),
+                        Text = n.Name,
+                        //Selected = n.ID == parentID ? true : false
+                    }).ToList();
+            var itemtip = new SelectListItem()
+            {
+                Value = "0",
+                Text = "---  Seçiniz ---"
+            };
+            items.Insert(0, itemtip);
+            return new SelectList(items, "Value", "Text");
+        }
+        public static IEnumerable<SelectListItem> GetMachineList()
+        {
+
+            DataOperations dataOperations = new DataOperations();
+            List<SelectListItem> items = dataOperations.GetMachines()
                 .OrderBy(n => n.Name)
                     .Select(n =>
                     new SelectListItem

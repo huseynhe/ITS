@@ -8,12 +8,10 @@ namespace ITS.UI.Enums
     public enum TypeEnum
     {
         GenderType = 1,
-        StructureType = 4,        
-        EducationType= 10,
-        EducationLevelType=14,
-        ProfessionAreaType=27,
-        DocumentType=69,
-        EmpPositionType = 1026, //1022,
+        ResultType = 4,
+        CareType = 8,
+        PlanedCareType = 11,
+        CareTeamType = 15
 
 
     }

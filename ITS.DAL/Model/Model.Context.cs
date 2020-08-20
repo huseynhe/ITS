@@ -34,5 +34,6 @@ namespace ITS.DAL.Model
         public virtual DbSet<tbl_Region> tbl_Region { get; set; }
         public virtual DbSet<tbl_Type> tbl_Type { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
+        public virtual DbSet<tbl_CareTracking> tbl_CareTracking { get; set; }
     }
 }

@@ -131,6 +131,7 @@
     <script>
         $().ready(
             function () {
+
                 var options = $.extend({},
                     $.datepicker.regional["az"], {
                     dateFormat: "dd-mm-yy",
@@ -139,7 +140,8 @@
                     highlightWeek: true,
                     showButtonPanel: true,
                     setDate: new Date(),
-                    maxDate: new Date()
+                    maxDate: "+5y",
+
                 }
                 );
                 $("input[type=datetime]").datepicker(options);
