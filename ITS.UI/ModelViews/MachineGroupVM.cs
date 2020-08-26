@@ -17,7 +17,7 @@ namespace ITS.UI.ModelViews
         public int ID { get; set; }
 
 
-        [Display(Name = "Avadanlığın adı")]
+        [Display(Name = "Avadanlığ qrupunun adı")]
         [Required(ErrorMessage = "Zəhmət olmazsa digər avadanlığın adı daxil edin")]
         public string Name { get; set; }
 

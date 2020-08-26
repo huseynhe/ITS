@@ -41,6 +41,16 @@
                 @Html.DropDownListFor(x => Model.MachineGroupID, new SelectList(Model.MachineGroupList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 5 })
                 @Html.ValidationMessageFor(model => model.MachineGroupID, "", new { @class = "text-danger" })
             </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.BusinessCenterID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.BusinessCenterID, new SelectList(Model.BusinessCenterList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 6 })
+                @Html.ValidationMessageFor(model => model.BusinessCenterID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ResponsiblePersonID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.ResponsiblePersonID, new SelectList(Model.ResponsiblePersonList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 7 })
+                @Html.ValidationMessageFor(model => model.ResponsiblePersonID, "", new { @class = "text-danger" })
+            </div>
         </div>
         <div class="clearfix"></div>
 

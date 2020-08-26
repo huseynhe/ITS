@@ -21,6 +21,8 @@ namespace ITS.DAL.Model
         public string Description { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<int> MachineGroupID { get; set; }
+        public Nullable<int> BusinessCenterID { get; set; }
+        public Nullable<int> ResponsiblePersonID { get; set; }
         public Nullable<System.DateTime> InsertDate { get; set; }
         public Nullable<int> InsertUser { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }

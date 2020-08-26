@@ -34,6 +34,9 @@ namespace ITS.UTILITY.Custom
         {
             return reader.IsDBNull(ordinal) ? DateTime.Now : reader.GetDateTime(ordinal);
         }
+
+       
+
         public static Byte? GetByteOrEmpty(this IDataReader reader, int ordinal)
         {
             return reader.IsDBNull(ordinal) ? (Byte?)null : reader.GetByte(ordinal);

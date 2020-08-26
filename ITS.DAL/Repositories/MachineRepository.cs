@@ -27,7 +27,11 @@ namespace ITS.DAL.Repositories
 
             if (search.isCount == false)
             {
-                head = @" m.ID,m.Code,m.Name,m.Description,m.Quantity,m.MachineGroupID,mg.Name as MachineGroupName ";
+                head = @" m.ID,m.Code,m.Name,m.Description,m.Quantity,m.MachineGroupID,
+                          mg.Name as MachineGroupName,m.BusinessCenterID,
+                           bc.Name as BusinessCenterName
+                          ,m.ResponsiblePersonID
+	                      ,(select p.Surname +' '+p.Name+' '+p.Fathername from dbo.tbl_Person p where p.ID=m.ResponsiblePersonID) as PersonSAA ";
             }
             else
             {
@@ -39,7 +43,8 @@ namespace ITS.DAL.Repositories
 
             var query = @"SELECT " + head + @"  from dbo.tbl_Machine m 
                                                 left join [dbo].[tbl_MachineGroup] mg on m.MachineGroupID=mg.ID and mg.Status=1
-                                                where m.Status=1  ";
+		                                        left join [dbo].tbl_BusinessCenter bc on m.BusinessCenterID=bc.ID and mg.Status=1                                               
+                                        where m.Status=1  ";
             allQuery.Append(query);
 
             string queryName = @" and  m.Name like N'%'+@P_Name+'%'";
@@ -94,8 +99,11 @@ namespace ITS.DAL.Repositories
                                 Description = reader.GetStringOrEmpty(3),
                                 Quantity = reader.GetInt32OrDefaultValue(4),
                                 MachineGroupID = reader.GetInt32OrDefaultValue(5),
-                                MachineGroupDesc = reader.GetStringOrEmpty(6)
-
+                                MachineGroupDesc = reader.GetStringOrEmpty(6),
+                                BusinessCenterID = reader.GetInt32OrDefaultValue(7),
+                                BusinessCenterDesc = reader.GetStringOrEmpty(8),
+                                ResponsiblePersonID =  reader.GetInt32OrDefaultValue(9),
+                                ResponsiblePersonSAA =reader.GetStringOrEmpty(10)
                             });
                         }
                         else

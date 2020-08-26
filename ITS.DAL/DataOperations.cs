@@ -1161,6 +1161,8 @@ namespace ITS.DAL
                         oldItem.Description = item.Description;
                         oldItem.Quantity = item.Quantity;
                         oldItem.MachineGroupID = item.MachineGroupID;
+                        oldItem.BusinessCenterID = item.BusinessCenterID;
+                        oldItem.ResponsiblePersonID = item.ResponsiblePersonID;
                         oldItem.UpdateDate = DateTime.Now;
                         oldItem.UpdateUser = item.UpdateUser;
                         context.tbl_Machine.Attach(oldItem);
@@ -1656,6 +1658,348 @@ namespace ITS.DAL
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+
+        }
+        #endregion
+
+        #region tbl_CareTrackingDetail
+        public tbl_CareTrackingDetail AddCareTrackingDetail(tbl_CareTrackingDetail item)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    item.Status = 1;
+                    item.InsertDate = DateTime.Now;
+                    item.UpdateDate = DateTime.Now;
+                    context.tbl_CareTrackingDetail.Add(item);
+                    context.SaveChanges();
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public tbl_CareTrackingDetail DeleteCareTrackingDetail(int id, int userId)
+        {
+
+            try
+            {
+                tbl_CareTrackingDetail oldItem;
+                using (var context = new ITSEntities())
+                {
+
+                    oldItem = (from p in context.tbl_CareTrackingDetail
+                               where p.ID == id && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.Status = 0;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = userId;
+                        context.tbl_CareTrackingDetail.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+
+                    }
+                }
+
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+                return oldItem;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public List<tbl_CareTrackingDetail> GetCareTrackingDetails()
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    var items = (from p in context.tbl_CareTrackingDetail
+                                 where p.Status == 1
+                                 select p);
+
+                    return items.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public tbl_CareTrackingDetail GetCareTrackingDetailById(Int64 Id)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+
+
+                    var item = (from p in context.tbl_CareTrackingDetail
+                                where p.ID == Id && p.Status == 1
+                                select p).FirstOrDefault();
+
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public tbl_CareTrackingDetail UpdateCareTrackingDetail(tbl_CareTrackingDetail item)
+        {
+            try
+            {
+                tbl_CareTrackingDetail oldItem;
+                using (var context = new ITSEntities())
+                {
+                    oldItem = (from p in context.tbl_CareTrackingDetail
+                               where p.ID == item.ID && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.StartDate = item.StartDate;
+                        oldItem.StartTime = item.StartTime;
+                        oldItem.EndDate = item.EndDate;
+                        oldItem.EndTime = item.EndTime;
+                        oldItem.Description = item.Description;
+                        oldItem.MechanicID = item.MechanicID;
+                        oldItem.ReceivingPersonID = item.ReceivingPersonID;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = item.UpdateUser;
+                        context.tbl_CareTrackingDetail.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+                        return oldItem;
+                    }
+                }
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        #endregion
+
+        #region tbl_Person
+        public tbl_Person AddPerson(tbl_Person item)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    item.Status = 1;
+                    item.InsertDate = DateTime.Now;
+                    item.UpdateDate = DateTime.Now;
+                    context.tbl_Person.Add(item);
+                    context.SaveChanges();
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public tbl_Person DeletePerson(int id, int userId)
+        {
+
+            try
+            {
+                tbl_Person oldItem;
+                using (var context = new ITSEntities())
+                {
+
+                    oldItem = (from p in context.tbl_Person
+                               where p.ID == id && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.Status = 0;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = userId;
+                        context.tbl_Person.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+
+                    }
+                }
+
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+                return oldItem;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public List<tbl_Person> GetPersons()
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    var items = (from p in context.tbl_Person
+                                 where p.Status == 1
+                                 select p);
+
+                    return items.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public tbl_Person GetPersonById(int Id)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+
+
+                    var item = (from p in context.tbl_Person
+                                where p.ID == Id && p.Status == 1
+                                select p).FirstOrDefault();
+
+                    return item;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public tbl_Person UpdatePerson(tbl_Person item)
+        {
+            try
+            {
+                tbl_Person oldItem;
+                using (var context = new ITSEntities())
+                {
+                    oldItem = (from p in context.tbl_Person
+                               where p.ID == item.ID && p.Status == 1
+                               select p).FirstOrDefault();
+
+                }
+                if (oldItem != null)
+                {
+                    using (var context = new ITSEntities())
+                    {
+                        oldItem.PIN = item.PIN;
+                        oldItem.Name = item.Name;
+                        oldItem.Surname = item.Surname;
+                        oldItem.Fathername = item.Fathername;
+                        oldItem.Gender = item.Gender;
+                        oldItem.PersonType = item.PersonType;
+                        oldItem.Address = item.Address;
+                        oldItem.Description = item.Description;
+                        oldItem.UpdateDate = DateTime.Now;
+                        oldItem.UpdateUser = item.UpdateUser;
+                        context.tbl_Person.Attach(oldItem);
+                        context.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+                        return oldItem;
+                    }
+                }
+                else
+                {
+                    Exception ex = new Exception("Bu nomrede setir recor yoxdur");
+                    throw ex;
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        public List<tbl_Person> GetPersonsByType(int typeId)
+        {
+
+            try
+            {
+                using (var context = new ITSEntities())
+                {
+                    var items = (from p in context.tbl_Person
+                                 where p.PersonType == typeId && p.Status == 1
+                                 select p);
+
+                    return items.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
 

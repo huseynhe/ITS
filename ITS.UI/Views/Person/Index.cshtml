@@ -1,0 +1,67 @@
+﻿
+@model ITS.UI.ModelViews.PersonVM
+@{
+    ViewBag.Title = "Şəxslərin siyahısı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
+        <div class="clearfix"></div><br />
+
+        <div class="well bs-component">
+
+            <a class="btn btn-warning pull-right btn-icon" href="@Url.Action("Create","Person")"><span class="fa fa-plus"></span> Əlavə et</a>
+
+            <div class="clearfix"></div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="margin:0;">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.PIN)
+                                <input onkeyup="Search(this, 'Person', 'Index', 'Code')" class="form-control" placeholder="axtar" />
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.FirstName)
+                                <input onkeyup="Search(this, 'Person', 'Index', 'Name')" class="form-control" placeholder="axtar" />
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.LastName)
+                                <input onkeyup="Search(this, 'Person', 'Index', 'SurName')" class="form-control" placeholder="axtar" />
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.FatherName)
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.GenderType)
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.PersonType)
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
+                                Redaktə et
+                                </br>
+                                Sil
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="AjaxPaginationList">
+                    @Html.Partial("PartialIndex")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/pagedList.js"></script>

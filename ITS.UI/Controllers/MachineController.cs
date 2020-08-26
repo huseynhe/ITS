@@ -3,6 +3,7 @@ using ITS.DAL.Model;
 using ITS.DAL.Objects;
 using ITS.DAL.Repositories;
 using ITS.UI.Attributes;
+using ITS.UI.Enums;
 using ITS.UI.ModelViews;
 using ITS.UI.Services;
 using ITS.UTILITY.Custom;
@@ -113,6 +114,8 @@ namespace ITS.UI.Controllers
                         Description = viewModel.Description,
                         Quantity = viewModel.Quantity,
                         MachineGroupID = viewModel.MachineGroupID,
+                        BusinessCenterID=viewModel.BusinessCenterID,
+                        ResponsiblePersonID=viewModel.ResponsiblePersonID,
                         InsertDate = DateTime.Now,
                         InsertUser = UserProfile.UserId
 
@@ -161,6 +164,8 @@ namespace ITS.UI.Controllers
             viewModel.Description = tblItem.Description;
             viewModel.Quantity = tblItem.Quantity;
             viewModel.MachineGroupID = tblItem.MachineGroupID==null?0:(int)tblItem.MachineGroupID;
+            viewModel.BusinessCenterID = tblItem.BusinessCenterID == null ? 0 : (int)tblItem.BusinessCenterID;
+            viewModel.ResponsiblePersonID = tblItem.ResponsiblePersonID == null ? 0 : (int)tblItem.ResponsiblePersonID; 
             viewModel = populateDropDownList(viewModel);
             return View(viewModel);
 
@@ -184,6 +189,8 @@ namespace ITS.UI.Controllers
                             Description = viewModel.Description,
                             Quantity = viewModel.Quantity,
                             MachineGroupID=viewModel.MachineGroupID,
+                            BusinessCenterID = viewModel.BusinessCenterID,
+                            ResponsiblePersonID = viewModel.ResponsiblePersonID,
                             UpdateDate = DateTime.Now,
                             UpdateUser = UserProfile.UserId
 
@@ -241,6 +248,8 @@ namespace ITS.UI.Controllers
         {
             //viewModel.GenderTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.GenderType);
             viewModel.MachineGroupList = EnumService.GetMachineGroupList();
+            viewModel.BusinessCenterList = EnumService.GetBusinessCenterList();
+            viewModel.ResponsiblePersonList = EnumService.GetPersonTypeList((int)PersonType.ResponsiblePerson);
 
             return viewModel;
         }

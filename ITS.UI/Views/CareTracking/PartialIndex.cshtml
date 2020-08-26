@@ -49,8 +49,10 @@
                 @Html.DisplayFor(modelItem => item.ResultDescription)
             </td>
             <td class="col-md-1 shsingle text-center" style="font-size:16px;">
-                <a class="btn btn-xs" title="Redaktə et" href="@Url.Action("Edit","CareTracking", new { id = item.CareTrackingID})"><span class="fa fa-pencil"></span></a>
-                <span title="Sil"> @Html.ActionLink(" ", "Delete", "CareTracking", new { id = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi?.');", @class = "btn btn-xs glyphicon glyphicon-trash" })</span>
+                <a class="btn btn-xs primary" title="Redaktə et" href="@Url.Action("Edit","CareTracking", new { id = item.CareTrackingID})"><span class="fa fa-pencil"></span></a>
+                <span title="Sil"> @Html.ActionLink(" ", "Delete", "CareTracking", new { id = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi?.');", @class = "btn btn-xs glyphicon glyphicon-trash primary" })</span>
+                <a class="btn btn-xs primary" data-toggle="tooltip" onclick="createModal('@Url.Action("Detail","CareTracking", new { careTrackingID = item.CareTrackingID})')"><span title="Detallara bax" class="fa fa-info"></span></a>
+                <a class="btn btn-xs primary" data-toggle="tooltip" title="Detay listəsi" href="@Url.Action("CareTrackingDetailIndex","CareTracking", new { careTrackingID = item.CareTrackingID})"><span class="fa fa-table"></span></a>
             </td>
 
         </tr>
@@ -58,14 +60,24 @@
     </tbody>
 </table>
 
-
+<div class="modal fade bs-example-modal-lg" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modelContent">
+        </div>
+    </div>
+</div>
 <div class="box-footer clearfix">
     Səhifə @(Model.Paging.PageCount < Model.Paging.PageNumber ? 0 : Model.Paging.PageNumber) (cəmi @Model.Paging.PageCount)
     @Html.PagedListPager(Model.Paging, page => Url.Action("Index", new { page }))
 </div>
 
 
-
+<script>
+    function createModal(url) {
+        $('#modelContent').load(url);
+        $('#myModal').modal('show');
+    }
+</script>
 
 
 

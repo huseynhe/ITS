@@ -57,6 +57,25 @@
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateUser" Type="int" />
         </EntityType>
+        <EntityType Name="tbl_CareTrackingDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CareTrackingID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="MechanicID" Type="int" />
+          <Property Name="ReceivingPersonID" Type="int" />
+          <Property Name="InsertDate" Type="datetime2" Precision="7" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateUser" Type="int" />
+        </EntityType>
         <EntityType Name="tbl_Country">
           <Key>
             <PropertyRef Name="ID" />
@@ -97,6 +116,8 @@
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="Quantity" Type="int" />
           <Property Name="MachineGroupID" Type="int" />
+          <Property Name="BusinessCenterID" Type="int" />
+          <Property Name="ResponsiblePersonID" Type="int" />
           <Property Name="InsertDate" Type="datetime2" Precision="7" />
           <Property Name="InsertUser" Type="int" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
@@ -114,6 +135,26 @@
           <Property Name="InsertUser" Type="int" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateUser" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="PersonType" Type="int" Nullable="false" />
+          <Property Name="PIN" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="200" />
+          <Property Name="Fathername" Type="nvarchar" MaxLength="200" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="InsertUser" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_Region">
           <Key>
@@ -169,10 +210,12 @@
           <EntitySet Name="tbl_AccessRight" EntityType="Self.tbl_AccessRight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_BusinessCenter" EntityType="Self.tbl_BusinessCenter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CareTracking" EntityType="Self.tbl_CareTracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CareTrackingDetail" EntityType="Self.tbl_CareTrackingDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Country" EntityType="Self.tbl_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Employee" EntityType="Self.tbl_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Machine" EntityType="Self.tbl_Machine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_MachineGroup" EntityType="Self.tbl_MachineGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Person" EntityType="Self.tbl_Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Region" EntityType="Self.tbl_Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Type" EntityType="Self.tbl_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
@@ -184,14 +227,16 @@
         <EntityContainer Name="ITSEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="tbl_AccessRight" EntityType="ITSModel.tbl_AccessRight" />
           <EntitySet Name="tbl_BusinessCenter" EntityType="ITSModel.tbl_BusinessCenter" />
+          <EntitySet Name="tbl_CareTracking" EntityType="ITSModel.tbl_CareTracking" />
+          <EntitySet Name="tbl_CareTrackingDetail" EntityType="ITSModel.tbl_CareTrackingDetail" />
           <EntitySet Name="tbl_Country" EntityType="ITSModel.tbl_Country" />
           <EntitySet Name="tbl_Employee" EntityType="ITSModel.tbl_Employee" />
           <EntitySet Name="tbl_Machine" EntityType="ITSModel.tbl_Machine" />
           <EntitySet Name="tbl_MachineGroup" EntityType="ITSModel.tbl_MachineGroup" />
+          <EntitySet Name="tbl_Person" EntityType="ITSModel.tbl_Person" />
           <EntitySet Name="tbl_Region" EntityType="ITSModel.tbl_Region" />
           <EntitySet Name="tbl_Type" EntityType="ITSModel.tbl_Type" />
           <EntitySet Name="tbl_User" EntityType="ITSModel.tbl_User" />
-          <EntitySet Name="tbl_CareTracking" EntityType="ITSModel.tbl_CareTracking" />
         </EntityContainer>
         <EntityType Name="tbl_AccessRight">
           <Key>
@@ -219,6 +264,46 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Precision="7" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_CareTracking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CareDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BusinessCenterID" Type="Int32" />
+          <Property Name="MachineGroupID" Type="Int32" />
+          <Property Name="MachineID" Type="Int32" />
+          <Property Name="CareDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CareType" Type="Int32" />
+          <Property Name="PlanedCareType" Type="Int32" />
+          <Property Name="CareTeamType" Type="Int32" />
+          <Property Name="ResultType" Type="Int32" />
+          <Property Name="ResultDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Precision="7" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_CareTrackingDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CareTrackingID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="7" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MechanicID" Type="Int32" />
+          <Property Name="ReceivingPersonID" Type="Int32" />
           <Property Name="InsertDate" Type="DateTime" Precision="7" />
           <Property Name="InsertUser" Type="Int32" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
@@ -264,6 +349,8 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="MachineGroupID" Type="Int32" />
+          <Property Name="BusinessCenterID" Type="Int32" />
+          <Property Name="ResponsiblePersonID" Type="Int32" />
           <Property Name="InsertDate" Type="DateTime" Precision="7" />
           <Property Name="InsertUser" Type="Int32" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
@@ -281,6 +368,26 @@
           <Property Name="InsertUser" Type="Int32" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateUser" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="PersonType" Type="Int32" Nullable="false" />
+          <Property Name="PIN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Fathername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsertUser" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tbl_Region">
           <Key>
@@ -332,27 +439,6 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateUser" Type="Int32" />
         </EntityType>
-        <EntityType Name="tbl_CareTracking">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="CareDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="BusinessCenterID" Type="Int32" />
-          <Property Name="MachineGroupID" Type="Int32" />
-          <Property Name="MachineID" Type="Int32" />
-          <Property Name="CareDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CareType" Type="Int32" />
-          <Property Name="PlanedCareType" Type="Int32" />
-          <Property Name="CareTeamType" Type="Int32" />
-          <Property Name="ResultType" Type="Int32" />
-          <Property Name="ResultDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InsertDate" Type="DateTime" Precision="7" />
-          <Property Name="InsertUser" Type="Int32" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="UpdateUser" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -387,6 +473,48 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CareTracking">
+            <EntityTypeMapping TypeName="ITSModel.tbl_CareTracking">
+              <MappingFragment StoreEntitySet="tbl_CareTracking">
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="ResultDescription" ColumnName="ResultDescription" />
+                <ScalarProperty Name="ResultType" ColumnName="ResultType" />
+                <ScalarProperty Name="CareTeamType" ColumnName="CareTeamType" />
+                <ScalarProperty Name="PlanedCareType" ColumnName="PlanedCareType" />
+                <ScalarProperty Name="CareType" ColumnName="CareType" />
+                <ScalarProperty Name="CareDescription" ColumnName="CareDescription" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="MachineGroupID" ColumnName="MachineGroupID" />
+                <ScalarProperty Name="BusinessCenterID" ColumnName="BusinessCenterID" />
+                <ScalarProperty Name="CareDate" ColumnName="CareDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CareTrackingDetail">
+            <EntityTypeMapping TypeName="ITSModel.tbl_CareTrackingDetail">
+              <MappingFragment StoreEntitySet="tbl_CareTrackingDetail">
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="ReceivingPersonID" ColumnName="ReceivingPersonID" />
+                <ScalarProperty Name="MechanicID" ColumnName="MechanicID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CareTrackingID" ColumnName="CareTrackingID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -430,6 +558,8 @@
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
                 <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="ResponsiblePersonID" ColumnName="ResponsiblePersonID" />
+                <ScalarProperty Name="BusinessCenterID" ColumnName="BusinessCenterID" />
                 <ScalarProperty Name="MachineGroupID" ColumnName="MachineGroupID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -449,6 +579,27 @@
                 <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Person">
+            <EntityTypeMapping TypeName="ITSModel.tbl_Person">
+              <MappingFragment StoreEntitySet="tbl_Person">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Fathername" ColumnName="Fathername" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="PersonType" ColumnName="PersonType" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -502,28 +653,6 @@
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_CareTracking">
-            <EntityTypeMapping TypeName="ITSModel.tbl_CareTracking">
-              <MappingFragment StoreEntitySet="tbl_CareTracking">
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
-                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
-                <ScalarProperty Name="ResultDescription" ColumnName="ResultDescription" />
-                <ScalarProperty Name="ResultType" ColumnName="ResultType" />
-                <ScalarProperty Name="CareTeamType" ColumnName="CareTeamType" />
-                <ScalarProperty Name="PlanedCareType" ColumnName="PlanedCareType" />
-                <ScalarProperty Name="CareType" ColumnName="CareType" />
-                <ScalarProperty Name="CareDescription" ColumnName="CareDescription" />
-                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
-                <ScalarProperty Name="MachineGroupID" ColumnName="MachineGroupID" />
-                <ScalarProperty Name="BusinessCenterID" ColumnName="BusinessCenterID" />
-                <ScalarProperty Name="CareDate" ColumnName="CareDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

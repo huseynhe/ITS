@@ -59,6 +59,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,6 +149,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MachineController.cs" />
     <Compile Include="Controllers\MachineGroupController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\TypeEnum.cs" />
@@ -158,6 +162,7 @@
     <Compile Include="ModelViews\EmployeeVM.cs" />
     <Compile Include="ModelViews\MachineGroupVM.cs" />
     <Compile Include="ModelViews\MachineVM.cs" />
+    <Compile Include="ModelViews\PersonVM.cs" />
     <Compile Include="ModelViews\TypeVM.cs" />
     <Compile Include="ModelViews\UserVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -958,6 +963,10 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\login.jpg" />
     <Content Include="Images\logoWTS.png" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1481,6 +1490,7 @@
     <Content Include="amcharts4\themes\moonrisekingdom.js.map" />
     <Content Include="amcharts4\themes\patterns.js.map" />
     <Content Include="amcharts4\themes\spiritedaway.js.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1493,6 +1503,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -2056,6 +2067,14 @@
     <Content Include="Views\CareTracking\PartialIndex.cshtml" />
     <Content Include="Views\CareTracking\Create.cshtml" />
     <Content Include="Views\CareTracking\Edit.cshtml" />
+    <Content Include="Views\CareTracking\CareTrackingDetailIndex.cshtml" />
+    <Content Include="Views\CareTracking\CreateCareTrackingDetail.cshtml" />
+    <Content Include="Views\CareTracking\EditCareTrackingDetail.cshtml" />
+    <Content Include="Views\CareTracking\Detail.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\PartialIndex.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

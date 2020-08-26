@@ -20,7 +20,7 @@
                 <table class="table table-bordered" style="margin:0;">
                     <tbody>
                         <tr>
-                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
                                 @Html.DisplayNameFor(model => model.Code)
                                 <input onkeyup="Search(this, 'Machine', 'Index', 'Code')" class="form-control" placeholder="axtar" />
                             </th>
@@ -34,8 +34,14 @@
                             <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
                                 @Html.DisplayNameFor(model => model.Description)
                             </th>
-                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
                                 @Html.DisplayNameFor(model => model.MachineGroupID)
+                            </th>
+                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.BusinessCenterID)
+                            </th>
+                            <th class="col-md-2" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
+                                @Html.DisplayNameFor(model => model.ResponsiblePersonID)
                             </th>
                             <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
                                 Redaktə et

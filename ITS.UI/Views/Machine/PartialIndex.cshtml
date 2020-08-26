@@ -18,7 +18,7 @@
         @foreach (var item in Model.RMachineList)
         {
         <tr>
-            <td class="col-md-2">
+            <td class="col-md-1">
                 @Html.DisplayFor(modelItem => item.Code)
             </td>
             <td class="col-md-2">
@@ -31,8 +31,14 @@
             <td class="col-md-1" align="center">
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td class="col-md-2">
+            <td class="col-md-1">
                 @Html.DisplayFor(modelItem => item.MachineGroupDesc)
+            </td>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.BusinessCenterDesc)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.ResponsiblePersonSAA)
             </td>
             <td class="col-md-1 shsingle text-center" style="font-size:16px;">
                 <a class="btn btn-xs" title="Redaktə et" href="@Url.Action("Edit","Machine", new { id = item.ID})"><span class="fa fa-pencil"></span></a>

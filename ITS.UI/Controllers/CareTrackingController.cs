@@ -1,4 +1,5 @@
 ﻿using ITS.DAL;
+using ITS.DAL.DTO;
 using ITS.DAL.Model;
 using ITS.DAL.Objects;
 using ITS.DAL.Repositories;
@@ -249,8 +250,40 @@ namespace ITS.UI.Controllers
                 return View("Error", new HandleErrorInfo(ex, "Error", "Error"));
             }
         }
+        public ActionResult Detail(int careTrackingID)
+        {
+            CareTrackingVM viewModel = new CareTrackingVM();
+            CareTrackingRepository repository = new CareTrackingRepository();
+
+            CareTrackingDTO careTrackingDTO = repository.GetCareTrackingByID(careTrackingID);
+
+
+
+            viewModel.ID = careTrackingDTO.CareTrackingID;
+            viewModel.CareDate = careTrackingDTO.CareDate;
+            viewModel.BusinessCenterID = careTrackingDTO.BusinessCenterID;
+            viewModel.BusinessCenterDesc = careTrackingDTO.BusinessCenterName;
+            viewModel.MachineGroupID = careTrackingDTO.MachineGroupID;
+            viewModel.MachineGroupDesc = careTrackingDTO.MachineGroupName;
+            viewModel.MachineID = careTrackingDTO.MachineID;
+            viewModel.MachineDesc = careTrackingDTO.MachineName;
+            viewModel.CareDescription = careTrackingDTO.CareDescription;
+            viewModel.CareType = careTrackingDTO.CareType;
+            viewModel.CareTypeDesc = careTrackingDTO.CareTypeDesc;
+            viewModel.PlanedCareType = careTrackingDTO.PlanedCareType;
+            viewModel.PlanedCareTypeDesc = careTrackingDTO.PlanedCareTypeDesc;
+            viewModel.CareTeamType = careTrackingDTO.CareTeamType;
+            viewModel.CareTeamTypeDesc = careTrackingDTO.CareTeamTypeDesc;
+            viewModel.ResultTypeDesc = careTrackingDTO.ResultTypeDesc;
+            viewModel.ResultDescription = careTrackingDTO.ResultDescription;
+
+            viewModel.RCareTrackingDetailList = repository.GetCareTrackingDetailsByCTID(careTrackingDTO.CareTrackingID);
+
+            
+            return View(viewModel);
+        }
         private CareTrackingVM populateDropDownList(CareTrackingVM viewModel)
-        {      
+        {
             viewModel.BusinessCenterList = EnumService.GetBusinessCenterList();
             viewModel.MachineGroupList = EnumService.GetMachineGroupList();
             viewModel.MachineList = EnumService.GetMachineList();
@@ -260,5 +293,175 @@ namespace ITS.UI.Controllers
             viewModel.ResultTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.ResultType);
             return viewModel;
         }
+
+        #region CareTrackingDetail  
+        public ActionResult CareTrackingDetailIndex(int careTrackingID)
+        {
+            CareTrackingRepository repository = new CareTrackingRepository();
+            List<CareTrackingDetailDTO> careTrackingDetailDTOs = repository.GetCareTrackingDetailsByCTID(careTrackingID);
+            CareTrackingVM viewModel = new CareTrackingVM();
+            viewModel.ID = careTrackingID;
+            viewModel.RCareTrackingDetailList = careTrackingDetailDTOs;
+            return View(viewModel);
+        }
+        public ActionResult CreateCareTrackingDetail(int careTrackingID)
+        {
+            CareTrackingVM viewModel = new CareTrackingVM();
+            viewModel.ID = careTrackingID;
+            viewModel = populateCTDDropDownList(viewModel);
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult CreateCareTrackingDetail(CareTrackingVM viewModel)
+        {
+            try
+            {
+                var UserProfile = (UserProfileSessionData)this.Session["UserProfile"];
+                if (UserProfile != null)
+                {
+
+                    tbl_CareTrackingDetail item = new tbl_CareTrackingDetail()
+                    {
+                        CareTrackingID = viewModel.ID,
+                        StartDate = viewModel.StartDate,
+                        StartTime = viewModel.StartTime,
+                        EndDate = viewModel.EndDate,
+                        EndTime = viewModel.EndTime,
+                        Description = viewModel.Description,
+                        MechanicID = viewModel.MechanicID,
+                        ReceivingPersonID = viewModel.ReceivingPersonID,
+                        InsertDate = DateTime.Now,
+                        InsertUser = UserProfile.UserId
+
+                    };
+
+                    DataOperations operations = new DataOperations();
+                    tbl_CareTrackingDetail itemDB = operations.AddCareTrackingDetail(item);
+                    if (itemDB != null)
+                    {
+                        TempData["success"] = "Ok";
+                        TempData["message"] = "Məlumatlar uğurla əlavə olundu";
+                        return RedirectToAction("CareTrackingDetailIndex", new { careTrackingID = itemDB.CareTrackingID });
+
+                    }
+                    else
+                    {
+                        TempData["success"] = "notOk";
+                        TempData["message"] = "Məlumatlar əlavə olunarkən xəta baş verdi";
+                        return RedirectToAction("CareTrackingDetailIndex", new { careTrackingID = itemDB.CareTrackingID });
+
+                    }
+
+
+                }
+                throw new ApplicationException("Invalid model");
+            }
+            catch (ApplicationException ex)
+            {
+
+                return View(viewModel);
+            }
+        }
+
+        public ActionResult EditCareTrackingDetail(Int64 ctDetailId)
+        {
+            CareTrackingVM viewModel = new CareTrackingVM();
+            DataOperations operations = new DataOperations();
+            tbl_CareTrackingDetail careTrackingDetail = operations.GetCareTrackingDetailById(ctDetailId);
+            viewModel.ID = careTrackingDetail.CareTrackingID;
+            viewModel.CareTrackingDetailID = careTrackingDetail.ID;
+            viewModel.StartDate = careTrackingDetail.StartDate;
+            viewModel.StartTime = careTrackingDetail.StartTime;
+            viewModel.EndDate = careTrackingDetail.EndDate;
+            viewModel.EndTime = careTrackingDetail.EndTime;
+            viewModel.Description = careTrackingDetail.Description;
+            viewModel.MechanicID = careTrackingDetail.MechanicID==null?0:(int)careTrackingDetail.MechanicID;
+            viewModel.ReceivingPersonID = careTrackingDetail.ReceivingPersonID==null?0 :(int) careTrackingDetail.ReceivingPersonID;
+            viewModel = populateCTDDropDownList(viewModel);
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult EditCareTrackingDetail(CareTrackingVM viewModel)
+        {
+            try
+            {
+                var UserProfile = (UserProfileSessionData)this.Session["UserProfile"];
+                if (UserProfile != null)
+                {
+                    tbl_CareTrackingDetail item = new tbl_CareTrackingDetail()
+                    {
+                        ID=viewModel.CareTrackingDetailID,
+                        CareTrackingID = viewModel.ID,
+                        StartDate = viewModel.StartDate,
+                        StartTime = viewModel.StartTime,
+                        EndDate = viewModel.EndDate,
+                        EndTime = viewModel.EndTime,
+                        Description = viewModel.Description,
+                        MechanicID = viewModel.MechanicID,
+                        ReceivingPersonID = viewModel.ReceivingPersonID,
+                        UpdateDate = DateTime.Now,
+                        UpdateUser = UserProfile.UserId
+
+                    };
+
+                    DataOperations operations = new DataOperations();
+                    tbl_CareTrackingDetail itemDB = operations.UpdateCareTrackingDetail(item);
+                    if (itemDB != null)
+                    {
+                        TempData["success"] = "Ok";
+                        TempData["message"] = "Məlumatlar uğurla redakte olundu";
+                        return RedirectToAction("CareTrackingDetailIndex", new { careTrackingID = itemDB.CareTrackingID });
+
+                    }
+                    else
+                    {
+                        TempData["success"] = "notOk";
+                        TempData["message"] = "Məlumatlar redakte olunarkən xəta baş verdi";
+                        return RedirectToAction("CareTrackingDetailIndex", new { careTrackingID = itemDB.CareTrackingID });
+                    }
+
+
+                }
+                throw new ApplicationException("Invalid model");
+            }
+            catch (ApplicationException ex)
+            {
+                viewModel = populateCTDDropDownList(viewModel);
+                return View(viewModel);
+            }
+
+        }
+        public ActionResult DeleteCareTrackingDetail(int ctDetailId, int ctId)
+        {
+            try
+            {
+                DataOperations dataOperations = new DataOperations();
+                var UserProfile = (UserProfileSessionData)this.Session["UserProfile"];
+                if (UserProfile != null)
+                {
+                    dataOperations.DeleteCareTrackingDetail(ctDetailId, UserProfile.UserId);
+                }
+                return RedirectToAction("CareTrackingDetailIndex", new { careTrackingID = ctId });
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new HandleErrorInfo(ex, "Error", "Error"));
+            }
+        }
+        private CareTrackingVM populateCTDDropDownList(CareTrackingVM viewModel)
+        {
+            viewModel.MechanicList = EnumService.GetPersonTypeList((int)PersonType.Mecanic);
+            viewModel.ReceivingPersonList = EnumService.GetPersonTypeList((int)PersonType.ReceivingPerson);
+            return viewModel;
+        }
+        #endregion
+        #region Print
+        public ActionResult Print(int id)
+        {
+
+            var report = new Rotativa.ActionAsPdf("Detail", new { careTrackingID = id });
+            return report;
+        }
+        #endregion
     }
 }

@@ -1,0 +1,150 @@
+﻿
+@model ITS.UI.ModelViews.CareTrackingVM
+@{
+    ViewBag.Title = "Baxım izləmə detal listəsi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="clearfix"></div><br />
+
+        <div class="well bs-component">
+
+            <a class="btn btn-warning active pull-left btn-icon" data-toggle="tooltip" title="geri dön" href="@Url.Action("Index","CareTracking", null)"><span class="fa fa-backward"></span> Geri dön</a>
+            @*@if (Model.RWorkList.Count == 0)
+                {*@
+            <a class="btn btn-warning active pull-right btn-icon" data-toggle="tooltip" title="əlavə et" href="@Url.Action("CreateCareTrackingDetail","CareTracking", new { careTrackingID = Model.ID})"><span class="fa fa-plus"></span>Əlavə et </a>
+            @*}*@
+
+
+            <div class="clearfix"></div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="margin:0;">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-1">
+                                @Html.DisplayNameFor(model => model.StartDate)
+                            </th>
+                            <th class="col-md-1">
+                                @Html.DisplayNameFor(model => model.StartTime)
+                            </th>
+                            <th class="col-md-1">
+                                @Html.DisplayNameFor(model => model.EndDate)
+                            </th>
+                            <th class="col-md-1">
+                                @Html.DisplayNameFor(model => model.EndTime)
+                            </th>
+                            <th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.MechanicID)
+                            </th>
+                            <th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.ReceivingPersonID)
+                            </th>
+                            <th class="col-md-2" style="font-size:16px;">redaktə et | sil | detal əlavə et (məlumat)</th>
+                        </tr>
+
+                        @foreach (var item in Model.RCareTrackingDetailList)
+                        {
+                            <tr>
+                                <td class="col-md-1">
+                                    @Html.DisplayFor(modelItem => item.StartDate)
+                                </td>
+                                <td class="col-md-1">
+                                    @Html.DisplayFor(modelItem => item.StartTime)
+                                </td>
+                                <td class="col-md-1">
+                                    @Html.DisplayFor(modelItem => item.EndDate)
+                                </td>
+                                <td class="col-md-1">
+                                    @Html.DisplayFor(modelItem => item.EndTime)
+                                </td>
+                                <td class="col-md-2">
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td class="col-md-2">
+                                    @Html.DisplayFor(modelItem => item.MechanicSAA)
+                                </td>
+                                <td class="col-md-2">
+                                    @Html.DisplayFor(modelItem => item.ReceivingPersonSAA)
+                                </td>
+                                <td class="col-md-2 shsingle text-left" style="font-size:16px;">
+
+                                    <a class="btn btn-primary active btn-xs" data-toggle="tooltip" title="redaktə et" href="@Url.Action("EditCareTrackingDetail","CareTracking", new { ctDetailId = item.CareTrackingDetailID})"><span class="fa fa-pencil"></span></a>
+                                    <span title="sil"> @Html.ActionLink(" ", "DeleteCareTrackingDetail", "CareTracking", new { ctDetailId = item.CareTrackingDetailID, ctId = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi');", @class = "glyphicon glyphicon-trash" })</span>
+
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modelContent">
+        </div>
+    </div>
+</div>
+
+<script>
+    function createModal(url) {
+        $('#modelContent').load(url);
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+                var deyer = '@TempData["success"]';
+                if (deyer== 'Ok')
+                {
+                    toastr.success('@TempData["message"]');
+                }
+                else if (deyer == 'notOk')
+                {
+                    toastr.warning('@TempData["message"]');
+
+                }
+
+    });
+</script>
+
+@{
+    TempData["success"] = null;
+    TempData["message"] = "";
+}
+
+

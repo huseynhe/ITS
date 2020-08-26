@@ -15,5 +15,9 @@ namespace ITS.DAL.DTO
         public int Quantity { get; set; }
         public int MachineGroupID { get; set; }
         public string MachineGroupDesc { get; set; }
+        public int BusinessCenterID { get; set; }
+        public string BusinessCenterDesc { get; set; }
+        public int ResponsiblePersonID { get; set; }
+        public string ResponsiblePersonSAA { get; set; }
     }
 }

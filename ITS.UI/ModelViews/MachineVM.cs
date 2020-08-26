@@ -38,5 +38,15 @@ namespace ITS.UI.ModelViews
         public string MachineGroupDesc { get; set; }
         public IEnumerable<SelectListItem> MachineGroupList { get; set; }
 
+        [Display(Name = "İş merkezi adı")]
+        public int BusinessCenterID { get; set; }
+        public string BusinessCenterDesc { get; set; }
+        public IEnumerable<SelectListItem> BusinessCenterList { get; set; }
+
+        [Display(Name = "Baxımdan cavabdeh şəxs (Soyad Ad Ata adı)")]
+        public int ResponsiblePersonID { get; set; }
+        public string PersonSAA { get; set; }
+        public IEnumerable<SelectListItem> ResponsiblePersonList { get; set; }
+
     }
 }

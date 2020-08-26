@@ -11,18 +11,18 @@ namespace ITS.UI.Enums
         ResultType = 4,
         CareType = 8,
         PlanedCareType = 11,
-        CareTeamType = 15
+        CareTeamType = 15,
+        PersonType=18
 
 
     }
-    public enum StructureType 
+    public enum PersonType 
     {
 
-        ForeignMinister=5,
-        Embassy=6,
-        Council=7,
-        HonoraryConsulate=8,
-        ForeignPolicyAffairs=9
+        Mecanic=19,
+        ReceivingPerson = 20,
+        ResponsiblePerson = 21, 
+    
 
 
     }

@@ -1,0 +1,90 @@
+﻿@model ITS.UI.ModelViews.PersonVM
+@{
+    ViewBag.Title = "Şəxs əlavə et ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="clearfix"></div>
+    <br />
+    <div class="well bs-component">
+        <div class="form-horizontal">
+           
+            <div class="panel panel-default">
+                <div class="panel-heading">Şəxsi məlumatlar</div>
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.PIN, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PIN, new { htmlAttributes = new { @class = "form-control", tabindex = 1 } })
+                            @Html.ValidationMessageFor(model => model.PIN, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", tabindex = 2 } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", tabindex = 3 } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", tabindex = 4 } })
+                            @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.GenderType, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(x => Model.GenderType, new SelectList(Model.GenderTypeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 5 })
+                            @Html.ValidationMessageFor(model => model.GenderType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.PersonType, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(x => Model.PersonType, new SelectList(Model.PersonTypeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 6 })
+                            @Html.ValidationMessageFor(model => model.PersonType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", tabindex = 7 } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", tabindex = 8 } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-6 control-label">
+                    @Html.ActionLink("Listə Geri Dön", "Index", "Person", null, new { @class = "btn btn-primary btn-lg btn-block" })
+                </div>
+                <div class="col-md-6 control-label">
+                    <input id="frmEmployee" type="submit" value="Yarat" class="btn btn-primary btn-lg btn-block" tabindex="17" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts
+{
+    <script>
+        var luserID = $("#LoginUserID").val();
+        if (luserID != 1) {
+            $('#AcceptEmployeeIDCmb').select2("enable", false)
+        }
+
+
+    </script>
+}
+
+
+

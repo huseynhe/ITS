@@ -379,5 +379,26 @@ namespace ITS.UI.Services
             items.Insert(0, itemtip);
             return new SelectList(items, "Value", "Text");
         }
+        public static IEnumerable<SelectListItem> GetPersonTypeList(int typeId)
+        {
+
+            DataOperations dataOperations = new DataOperations();
+            List<SelectListItem> items = dataOperations.GetPersonsByType(typeId)
+                .OrderBy(n => n.Name)
+                    .Select(n =>
+                    new SelectListItem
+                    {
+                        Value = n.ID.ToString(),
+                        Text = n.Name+" "+n.Surname+" "+n.Fathername,
+                        //Selected = n.ID == parentID ? true : false
+                    }).ToList();
+            var itemtip = new SelectListItem()
+            {
+                Value = "0",
+                Text = "---  Seçiniz ---"
+            };
+            items.Insert(0, itemtip);
+            return new SelectList(items, "Value", "Text");
+        }
     }
 }
