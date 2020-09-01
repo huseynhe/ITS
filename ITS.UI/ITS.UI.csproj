@@ -2075,6 +2075,8 @@
     <Content Include="Views\Person\PartialIndex.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\CareTracking\PrintCareTracking.cshtml" />
+    <Content Include="Views\Shared\_LayoutPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

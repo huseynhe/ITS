@@ -1638,6 +1638,7 @@ namespace ITS.DAL
                         oldItem.CareTeamType = item.CareTeamType;
                         oldItem.ResultType = item.ResultType;
                         oldItem.ResultDescription = item.ResultDescription;
+                        oldItem.StateType = item.StateType;
                         oldItem.UpdateDate = DateTime.Now;
                         oldItem.UpdateUser = item.UpdateUser;
                         context.tbl_CareTracking.Attach(oldItem);

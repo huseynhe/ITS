@@ -15,10 +15,10 @@
         <div class="well bs-component">
 
             <a class="btn btn-warning active pull-left btn-icon" data-toggle="tooltip" title="geri dön" href="@Url.Action("Index","CareTracking", null)"><span class="fa fa-backward"></span> Geri dön</a>
-            @*@if (Model.RWorkList.Count == 0)
-                {*@
-            <a class="btn btn-warning active pull-right btn-icon" data-toggle="tooltip" title="əlavə et" href="@Url.Action("CreateCareTrackingDetail","CareTracking", new { careTrackingID = Model.ID})"><span class="fa fa-plus"></span>Əlavə et </a>
-            @*}*@
+            @if (Model.RCareTrackingDetailList.Count == 0)
+            {
+                <a class="btn btn-warning active pull-right btn-icon" data-toggle="tooltip" title="əlavə et" href="@Url.Action("CreateCareTrackingDetail","CareTracking", new { careTrackingID = Model.ID})"><span class="fa fa-plus"></span>Əlavə et </a>
+            }
 
 
             <div class="clearfix"></div>

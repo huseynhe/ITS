@@ -1,0 +1,206 @@
+﻿@model ITS.UI.ModelViews.CareTrackingVM
+
+@{
+    ViewBag.Title = "Baxım izləmə haqqında detay ekranı";
+    Layout = "~/Views/Shared/_LayoutPrint.cshtml";
+}
+<style>
+    table {
+     /*   border-collapse: collapse;*/
+    }
+
+    table, th, td {
+        border: 1px dotted black;
+        padding: 15px !important;
+        text-align: left;
+    }
+
+    th {
+        background-color: #2dc3e8;
+        /*  color: white;*/
+    }
+
+    .section-header {
+        color: #cf8a05;
+        font-size: 31px;
+        font-weight: 800;
+    }
+
+    .hrstyle {
+        height: 3px;
+        /*border-width: 2px;*/
+        background-color: #cf8a05
+    }
+</style>
+@{
+        string MecanicName = string.Empty;
+        string RecName = string.Empty;
+
+    <div class="pull-left">
+        <small>
+            <img style="border-radius: 45px; width: 65%;padding:15px;"
+                 src="~/Images/logo.png" />
+        </small>
+    </div>
+
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <hr class="hrstyle">
+            <h1>
+                <span class="section-header">Baxım izləmə məlumatları</span>
+            </h1>
+            <table class="table">
+                <tbody>
+
+                    <tr>
+                        <th>Sıra №-si</th>
+                        <th>Parametrləri</th>
+                        <th>Dəyərləri</th>
+                    </tr>
+                    <tr>
+                        <td scope="row">1</td>
+                        <td>@Html.LabelFor(model => model.CareDate, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.CareDate</td>
+                    </tr>
+
+
+                    <tr>
+                        <td scope="row">2</td>
+                        <td>@Html.LabelFor(model => model.BusinessCenterID, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.BusinessCenterDesc</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">3</td>
+                        <td>@Html.LabelFor(model => model.MachineGroupID, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.MachineGroupDesc</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">4</td>
+                        <td>@Html.LabelFor(model => model.MachineID, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.MachineDesc</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">5</td>
+                        <td>@Html.LabelFor(model => model.CareDescription, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.CareDescription</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">6</td>
+                        <td>@Html.LabelFor(model => model.CareType, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.CareTypeDesc</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">7</td>
+                        <td>@Html.LabelFor(model => model.PlanedCareType, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.PlanedCareTypeDesc</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">8</td>
+                        <td>@Html.LabelFor(model => model.CareTeamType, htmlAttributes: new { @class = "control-label" })</td>
+                        <td>@Model.CareTeamTypeDesc</td>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <hr class="hrstyle">
+            <h1>
+                <span class="section-header">Detay məlumatları</span>
+            </h1>
+            <div class="clearfix"></div>
+            <table class="table table-hover">
+                <tr style="border:1px">
+                    <th>Sıra №-si</th>
+                    <th>@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })</th>
+
+
+
+                </tr>
+                @{ int rowNumberCTD = 1;
+                    foreach (var item in Model.RCareTrackingDetailList)
+                    {
+                        <tr>
+
+                            <td>
+                                @rowNumberCTD
+                            </td>
+                            <td>
+                                @item.StartDate
+                            </td>
+                            <td>
+                                @item.StartTime
+                            </td>
+                            <td>
+                                @item.EndDate
+                            </td>
+                            <td>
+                                @item.EndTime
+                            </td>
+                            <td style="width:50%">
+                                @item.Description
+                            </td>
+
+                        </tr>
+                        rowNumberCTD = rowNumberCTD + 1;
+                        MecanicName = item.MechanicSAA;
+                        RecName = item.ReceivingPersonSAA;
+
+                    }
+                }
+            </table>
+            <div class="clearfix"></div>
+            <br />
+            <br />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <table class="table table-hover" style="border:hidden">
+                <tbody>
+
+                    <tr style="border:none">
+                        <td style="border:none">
+                            @Html.LabelFor(model => model.MechanicID, htmlAttributes: new { @class = "control-label" })
+                        </td>
+                        <td style="border:none">
+                            @MecanicName
+                        </td>
+                        <td style="border:none">
+                            Imza
+                        </td>
+                        <td style="border:none">
+                            ---------------------------
+                        </td>
+                    </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                            @Html.LabelFor(model => model.ReceivingPersonID, htmlAttributes: new { @class = "control-label" })
+                        </td>
+                        <td style="border:none">
+                            @RecName
+                        </td>
+                        <td style="border:none">
+                            Imza
+                        </td>
+                        <td style="border:none">
+                            ---------------------------
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+}

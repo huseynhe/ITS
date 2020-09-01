@@ -7,7 +7,6 @@
       <Diagram DiagramId="b253244d422e405baf15f8dde2584665" Name="Diagram1" >
         <EntityTypeShape EntityType="ITSModel.tbl_AccessRight" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_BusinessCenter" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ITSModel.tbl_CareTracking" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_CareTrackingDetail" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_Country" Width="1.5" PointX="2.75" PointY="5.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_Employee" Width="1.5" PointX="4.75" PointY="5.75" />
@@ -17,6 +16,7 @@
         <EntityTypeShape EntityType="ITSModel.tbl_Region" Width="1.5" PointX="8.75" PointY="5.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_Type" Width="1.5" PointX="2.75" PointY="9.75" />
         <EntityTypeShape EntityType="ITSModel.tbl_User" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ITSModel.tbl_CareTracking" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
