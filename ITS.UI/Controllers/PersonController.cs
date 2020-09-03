@@ -17,6 +17,9 @@ using System.Web.Mvc;
 
 namespace ITS.UI.Controllers
 {
+    [LoginCheck]
+    [AccessRightsCheck]
+    [Description("Şəxslərin icazələri")]
     public class PersonController : Controller
     {
         PersonVM vModel = new PersonVM();

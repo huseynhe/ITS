@@ -19,7 +19,7 @@ namespace ITS.UI.Controllers
 {
     [LoginCheck]
     [AccessRightsCheck]
-    [Description("Mövzullar")]
+    [Description("Mövzu icazələri")]
     public class TypeController : Controller
     {
         // GET: Type

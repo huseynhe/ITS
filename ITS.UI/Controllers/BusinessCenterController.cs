@@ -15,6 +15,9 @@ using System.Web.Mvc;
 
 namespace ITS.UI.Controllers
 {
+    [LoginCheck]
+    [AccessRightsCheck]
+    [Description("İş merkezleri icazələri")]
     public class BusinessCenterController : Controller
     {
         // GET: BusinessCenter

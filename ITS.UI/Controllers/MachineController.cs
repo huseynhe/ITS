@@ -17,7 +17,9 @@ using System.Web.Mvc;
 
 namespace ITS.UI.Controllers
 {
-   
+    [LoginCheck]
+    [AccessRightsCheck]
+    [Description("Avadanlığların icazələri")]
     public class MachineController : Controller
     {
         // GET: Machine

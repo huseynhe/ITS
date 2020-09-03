@@ -1,12 +1,12 @@
 ﻿@model ITS.UI.ModelViews.CareTrackingVM
-
+@using ITS.DAL.DTO
 @{
     ViewBag.Title = "Baxım izləmə haqqında detay ekranı";
     Layout = "~/Views/Shared/_LayoutPrint.cshtml";
 }
 <style>
     table {
-     /*   border-collapse: collapse;*/
+        /*   border-collapse: collapse;*/
     }
 
     table, th, td {
@@ -33,8 +33,8 @@
     }
 </style>
 @{
-        string MecanicName = string.Empty;
-        string RecName = string.Empty;
+    string MecanicName = string.Empty;
+    string RecName = string.Empty;
 
     <div class="pull-left">
         <small>
@@ -101,7 +101,7 @@
                         <td>@Html.LabelFor(model => model.CareTeamType, htmlAttributes: new { @class = "control-label" })</td>
                         <td>@Model.CareTeamTypeDesc</td>
                     </tr>
-                
+
                 </tbody>
             </table>
         </div>
@@ -128,35 +128,76 @@
 
                 </tr>
                 @{ int rowNumberCTD = 1;
-                    foreach (var item in Model.RCareTrackingDetailList)
+                    CareTrackingDetailDTO careTrackingDetailDTO = null;
+
+                    if (Model.RCareTrackingDetailList.Count > 0)
                     {
-                        <tr>
-
-                            <td>
-                                @rowNumberCTD
-                            </td>
-                            <td>
-                                @item.StartDate
-                            </td>
-                            <td>
-                                @item.StartTime
-                            </td>
-                            <td>
-                                @item.EndDate
-                            </td>
-                            <td>
-                                @item.EndTime
-                            </td>
-                            <td style="width:50%">
-                                @item.Description
-                            </td>
-
-                        </tr>
-                        rowNumberCTD = rowNumberCTD + 1;
-                        MecanicName = item.MechanicSAA;
-                        RecName = item.ReceivingPersonSAA;
-
+                        careTrackingDetailDTO = Model.RCareTrackingDetailList[0];
                     }
+
+
+                    <tr>
+
+                        <td>
+                            @rowNumberCTD
+                        </td>
+                        <td rowspan="2">
+                            @{if (careTrackingDetailDTO != null)
+                                { @careTrackingDetailDTO.StartDate }
+
+                            }
+
+                        </td>
+                        <td rowspan="2">
+                            @{if (careTrackingDetailDTO != null)
+                                { @careTrackingDetailDTO.StartTime }
+
+                            }
+
+                        </td>
+                        <td rowspan="2">
+                            @{if (careTrackingDetailDTO != null)
+                                { @careTrackingDetailDTO.EndDate }
+
+                            }
+
+                        </td>
+                        <td rowspan="2">
+                            @{if (careTrackingDetailDTO != null)
+                                { @careTrackingDetailDTO.EndTime }
+
+                            }
+
+                        </td>
+                        <td rowspan="2" style="width:100%">
+                            @{if (careTrackingDetailDTO != null)
+                                { @careTrackingDetailDTO.Description }
+
+                            }
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+
+                        <td>
+                            <br />
+                        </td>
+
+                    </tr>
+
+                    rowNumberCTD = rowNumberCTD + 1;
+                    if (careTrackingDetailDTO != null)
+                    {
+                        MecanicName = careTrackingDetailDTO.MechanicSAA;
+                        RecName = careTrackingDetailDTO.ReceivingPersonSAA;
+                    }
+
+
+
                 }
             </table>
             <div class="clearfix"></div>

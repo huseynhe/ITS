@@ -16,12 +16,15 @@ using System.Web.Mvc;
 
 namespace ITS.UI.Controllers
 {
+    [LoginCheck]
+    [AccessRightsCheck]
+    [Description("İşci yönətimi icazələri")]
     public class EmployeeController : Controller
     {
         // GET: Employee
         [LoginCheck]
         [AccessRightsCheck]
-        [Description("Vəzifəli şəxs")]
+        [Description("İşcilərin siyahısı")]
         public ActionResult Index(int? page, string vl, string prm = null)
         {
             EmployeeRepository repository = new EmployeeRepository();
@@ -219,7 +222,7 @@ namespace ITS.UI.Controllers
             }
 
         }
-        [Description("İşçi şəxs sil")]
+        [Description("İşçi sil")]
         public ActionResult Delete(int id)
         {
             try

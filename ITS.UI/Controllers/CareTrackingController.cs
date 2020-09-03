@@ -18,6 +18,9 @@ using System.Web.Mvc;
 
 namespace ITS.UI.Controllers
 {
+    [LoginCheck]
+    [AccessRightsCheck]
+    [Description("Baxım izləmə icazələri")]
     public class CareTrackingController : Controller
     {
         // GET: CareTracking

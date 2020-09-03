@@ -20,7 +20,7 @@ namespace ITS.UI.Controllers
 
     [LoginCheck]
     [AccessRightsCheck]
-    [Description("İstifadəçilər")]
+    [Description("İstifadəçi icazələri")]
     public class UserController : Controller
     {
         // GET: Users
