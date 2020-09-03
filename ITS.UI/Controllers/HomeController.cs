@@ -30,5 +30,12 @@ namespace ITS.UI.Controllers
 
             return View();
         }
+        public ActionResult AccessRightsError(string CName, string AName)
+        {
+            TempData["success"] = "notOk";
+            TempData["message"] = "Bu əməliyyat üçün icazəniz yoxdur";
+
+            return RedirectToAction(AName, CName);
+        }
     }
 }
