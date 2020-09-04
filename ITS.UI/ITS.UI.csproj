@@ -150,6 +150,7 @@
     <Compile Include="Controllers\MachineController.cs" />
     <Compile Include="Controllers\MachineGroupController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\PrintOperationController.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enums\TypeEnum.cs" />
@@ -2075,8 +2076,8 @@
     <Content Include="Views\Person\PartialIndex.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
-    <Content Include="Views\CareTracking\PrintCareTracking.cshtml" />
     <Content Include="Views\Shared\_LayoutPrint.cshtml" />
+    <Content Include="Views\PrintOperation\PrintCareTracking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
