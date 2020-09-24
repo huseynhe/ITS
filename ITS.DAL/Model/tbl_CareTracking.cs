@@ -24,8 +24,6 @@ namespace ITS.DAL.Model
         public Nullable<int> CareType { get; set; }
         public Nullable<int> PlanedCareType { get; set; }
         public Nullable<int> CareTeamType { get; set; }
-        public Nullable<int> ResultType { get; set; }
-        public string ResultDescription { get; set; }
         public Nullable<int> StateType { get; set; }
         public Nullable<System.DateTime> InsertDate { get; set; }
         public Nullable<int> InsertUser { get; set; }

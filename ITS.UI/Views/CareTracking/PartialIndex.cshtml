@@ -42,12 +42,7 @@
             <td class="col-md-1">
                 @Html.DisplayFor(modelItem => item.CareTeamTypeDesc)
             </td>
-            <td class="col-md-1">
-                @Html.DisplayFor(modelItem => item.ResultTypeDesc)
-            </td>
-            <td class="col-md-1">
-                @Html.DisplayFor(modelItem => item.ResultDescription)
-            </td>
+        
             <td class="col-md-1 shsingle text-center" style="font-size:16px;">
                 <a class="btn btn-xs primary" title="Redaktə et" href="@Url.Action("Edit","CareTracking", new { id = item.CareTrackingID})"><span class="fa fa-pencil"></span></a>
                 <span title="Sil"> @Html.ActionLink(" ", "Delete", "CareTracking", new { id = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi?.');", @class = "btn btn-xs glyphicon glyphicon-trash primary" })</span>

@@ -27,6 +27,7 @@ namespace ITS.DAL.Model
     
         public virtual DbSet<tbl_AccessRight> tbl_AccessRight { get; set; }
         public virtual DbSet<tbl_BusinessCenter> tbl_BusinessCenter { get; set; }
+        public virtual DbSet<tbl_CareTracking> tbl_CareTracking { get; set; }
         public virtual DbSet<tbl_CareTrackingDetail> tbl_CareTrackingDetail { get; set; }
         public virtual DbSet<tbl_Country> tbl_Country { get; set; }
         public virtual DbSet<tbl_Employee> tbl_Employee { get; set; }
@@ -36,6 +37,5 @@ namespace ITS.DAL.Model
         public virtual DbSet<tbl_Region> tbl_Region { get; set; }
         public virtual DbSet<tbl_Type> tbl_Type { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
-        public virtual DbSet<tbl_CareTracking> tbl_CareTracking { get; set; }
     }
 }

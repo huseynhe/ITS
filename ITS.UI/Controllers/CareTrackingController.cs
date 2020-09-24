@@ -117,8 +117,7 @@ namespace ITS.UI.Controllers
                         CareType = viewModel.CareType,
                         PlanedCareType = viewModel.PlanedCareType,
                         CareTeamType = viewModel.CareTeamType,
-                        ResultType = viewModel.ResultType,
-                        ResultDescription=viewModel.ResultDescription,
+                  
                         InsertDate = DateTime.Now,
                         InsertUser = UserProfile.UserId
 
@@ -170,8 +169,7 @@ namespace ITS.UI.Controllers
             viewModel.CareType = tblItem.CareType == null ? 0 : (int)tblItem.CareType;
             viewModel.PlanedCareType = tblItem.PlanedCareType == null ? 0 : (int)tblItem.PlanedCareType;
             viewModel.CareTeamType = tblItem.CareTeamType == null ? 0 : (int)tblItem.CareTeamType;
-            viewModel.ResultType = tblItem.ResultType == null ? 0 : (int)tblItem.ResultType;
-            viewModel.ResultDescription = tblItem.ResultDescription;
+   
    
             viewModel = populateDropDownList(viewModel);
             return View(viewModel);
@@ -199,8 +197,6 @@ namespace ITS.UI.Controllers
                             CareType = viewModel.CareType,
                             PlanedCareType = viewModel.PlanedCareType,
                             CareTeamType = viewModel.CareTeamType,
-                            ResultType = viewModel.ResultType,
-                            ResultDescription = viewModel.ResultDescription,
                             UpdateDate = DateTime.Now,
                             UpdateUser = UserProfile.UserId
 
@@ -277,8 +273,8 @@ namespace ITS.UI.Controllers
             viewModel.PlanedCareTypeDesc = careTrackingDTO.PlanedCareTypeDesc;
             viewModel.CareTeamType = careTrackingDTO.CareTeamType;
             viewModel.CareTeamTypeDesc = careTrackingDTO.CareTeamTypeDesc;
-            viewModel.ResultTypeDesc = careTrackingDTO.ResultTypeDesc;
-            viewModel.ResultDescription = careTrackingDTO.ResultDescription;
+            //viewModel.ResultTypeDesc = careTrackingDTO.ResultTypeDesc;
+            //viewModel.ResultDescription = careTrackingDTO.ResultDescription;
 
             viewModel.RCareTrackingDetailList = repository.GetCareTrackingDetailsByCTID(careTrackingDTO.CareTrackingID);
 
@@ -293,7 +289,7 @@ namespace ITS.UI.Controllers
             viewModel.CareTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.CareType);
             viewModel.PlanedCareTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.PlanedCareType);
             viewModel.CareTeamTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.CareTeamType);
-            viewModel.ResultTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.ResultType);
+
             return viewModel;
         }
 
@@ -333,6 +329,8 @@ namespace ITS.UI.Controllers
                         Description = viewModel.Description,
                         MechanicID = viewModel.MechanicID,
                         ReceivingPersonID = viewModel.ReceivingPersonID,
+                        ResultType=viewModel.ResultType,
+                        ResultDescription=viewModel.ResultDescription,
                         InsertDate = DateTime.Now,
                         InsertUser = UserProfile.UserId
 
@@ -380,6 +378,9 @@ namespace ITS.UI.Controllers
             viewModel.Description = careTrackingDetail.Description;
             viewModel.MechanicID = careTrackingDetail.MechanicID==null?0:(int)careTrackingDetail.MechanicID;
             viewModel.ReceivingPersonID = careTrackingDetail.ReceivingPersonID==null?0 :(int) careTrackingDetail.ReceivingPersonID;
+
+            viewModel.ResultType = careTrackingDetail.ResultType == null ? 0 : (int)careTrackingDetail.ResultType;
+            viewModel.ResultDescription = careTrackingDetail.ResultDescription;
             viewModel = populateCTDDropDownList(viewModel);
             return View(viewModel);
         }
@@ -402,6 +403,8 @@ namespace ITS.UI.Controllers
                         Description = viewModel.Description,
                         MechanicID = viewModel.MechanicID,
                         ReceivingPersonID = viewModel.ReceivingPersonID,
+                        ResultType = viewModel.ResultType,
+                        ResultDescription = viewModel.ResultDescription,
                         UpdateDate = DateTime.Now,
                         UpdateUser = UserProfile.UserId
 
@@ -455,6 +458,7 @@ namespace ITS.UI.Controllers
         {
             viewModel.MechanicList = EnumService.GetPersonTypeList((int)PersonType.Mecanic);
             viewModel.ReceivingPersonList = EnumService.GetPersonTypeList((int)PersonType.ReceivingPerson);
+            viewModel.ResultTypeList = EnumService.GetEnumTypesByParent((int)TypeEnum.ResultType);
             return viewModel;
         }
         #endregion

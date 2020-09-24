@@ -23,9 +23,9 @@ namespace ITS.DAL.DTO
         public string PlanedCareTypeDesc { get; set; }
         public int CareTeamType { get; set; }
         public string CareTeamTypeDesc { get; set; }
-        public int ResultType { get; set; }
-        public string ResultTypeDesc { get; set; }
-        public string ResultDescription { get; set; }
+        public CareTrackingDetailDTO careTrackingDetailDTO { get; set; }
+
+
     }
 
 } 

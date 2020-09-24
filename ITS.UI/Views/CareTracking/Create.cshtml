@@ -54,16 +54,7 @@
                 @Html.DropDownListFor(x => Model.CareTeamType, new SelectList(Model.CareTeamTypeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 8 })
                 @Html.ValidationMessageFor(model => model.CareTeamType, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-4">
-                @Html.LabelFor(model => model.ResultType, htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(x => Model.ResultType, new SelectList(Model.ResultTypeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 9 })
-                @Html.ValidationMessageFor(model => model.ResultType, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-4">
-                @Html.LabelFor(model => model.ResultDescription, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.ResultDescription, new { htmlAttributes = new { @class = "form-control", tabindex = 10 } })
-                @Html.ValidationMessageFor(model => model.ResultDescription, "", new { @class = "text-danger" })
-            </div>
+      
         </div>
         <div class="clearfix"></div>
 

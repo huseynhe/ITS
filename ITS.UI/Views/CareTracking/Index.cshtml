@@ -14,7 +14,7 @@
         <div class="well bs-component">
 
             <a class="btn btn-warning pull-right btn-icon" href="@Url.Action("Create","CareTracking")"><span class="fa fa-plus"></span> Əlavə et</a>
-
+            <a class="btn btn-primary pull-left fa fa-file-excel-o " href="@Url.Action("DownloadExcel","ExcellOperation")"><span class="glyphicon glyphicon-download-alt"></span> Yüklə</a>
             <div class="clearfix"></div>
             <div class="table-responsive">
                 <table class="table table-bordered" style="margin:0;">
@@ -47,12 +47,7 @@
                             <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
                                 @Html.DisplayNameFor(model => model.CareTeamType)
                             </th>
-                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
-                                @Html.DisplayNameFor(model => model.ResultType)
-                            </th>
-                            <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color: gainsboro;">
-                                @Html.DisplayNameFor(model => model.ResultDescription)
-                            </th>
+                       
                             <th class="col-md-1" style="font-size:14px; text-align:center; vertical-align:middle; background-color:gainsboro;">
                                 Redaktə et
                                 </br>

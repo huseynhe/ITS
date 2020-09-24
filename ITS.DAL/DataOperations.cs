@@ -1636,8 +1636,6 @@ namespace ITS.DAL
                         oldItem.CareType = item.CareType;
                         oldItem.PlanedCareType = item.PlanedCareType;
                         oldItem.CareTeamType = item.CareTeamType;
-                        oldItem.ResultType = item.ResultType;
-                        oldItem.ResultDescription = item.ResultDescription;
                         oldItem.StateType = item.StateType;
                         oldItem.UpdateDate = DateTime.Now;
                         oldItem.UpdateUser = item.UpdateUser;
@@ -1799,6 +1797,8 @@ namespace ITS.DAL
                         oldItem.Description = item.Description;
                         oldItem.MechanicID = item.MechanicID;
                         oldItem.ReceivingPersonID = item.ReceivingPersonID;
+                        oldItem.ResultType = item.ResultType;
+                        oldItem.ResultDescription = item.ResultDescription;
                         oldItem.UpdateDate = DateTime.Now;
                         oldItem.UpdateUser = item.UpdateUser;
                         context.tbl_CareTrackingDetail.Attach(oldItem);

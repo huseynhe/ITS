@@ -54,13 +54,7 @@ namespace ITS.UI.ModelViews
         public string CareTeamTypeDesc { get; set; }
         public IEnumerable<SelectListItem> CareTeamTypeList { get; set; }
 
-        [Display(Name = "Nəticə")]
-        public int ResultType { get; set; }
-        public string ResultTypeDesc { get; set; }
-        public IEnumerable<SelectListItem> ResultTypeList { get; set; }
 
-        [Display(Name = "Nəticə təsviri")]
-        public string ResultDescription { get; set; }
 
         #region CareTrackingDetail
         public IList<CareTrackingDetailDTO> RCareTrackingDetailList { get; set; }
@@ -84,7 +78,14 @@ namespace ITS.UI.ModelViews
         public int ReceivingPersonID { get; set; }
         public string ReceivingPersonSAA { get; set; }
         public IEnumerable<SelectListItem> ReceivingPersonList { get; set; }
-      
+
+
+        [Display(Name = "Nəticə")]
+        public int ResultType { get; set; }
+        public string ResultTypeDesc { get; set; }
+        public IEnumerable<SelectListItem> ResultTypeList { get; set; }
+        [Display(Name = "Nəticə təsviri")]
+        public string ResultDescription { get; set; }
         #endregion
     }
 }

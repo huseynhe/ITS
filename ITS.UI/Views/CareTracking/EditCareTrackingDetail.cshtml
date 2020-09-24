@@ -83,6 +83,16 @@
                 @Html.DropDownListFor(x => Model.ReceivingPersonID, new SelectList(Model.ReceivingPersonList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 7 })
                 @Html.ValidationMessageFor(model => model.ReceivingPersonID, "", new { @class = "text-danger" })
             </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ResultType, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(x => Model.ResultType, new SelectList(Model.ResultTypeList, "Value", "Text"), htmlAttributes: new { @class = "select2 form-control", tabindex = 8 })
+                @Html.ValidationMessageFor(model => model.ResultType, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ResultDescription, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ResultDescription, new { htmlAttributes = new { @class = "form-control", tabindex = 9 } })
+                @Html.ValidationMessageFor(model => model.ResultDescription, "", new { @class = "text-danger" })
+            </div>
             <div class="clearfix"></div>
 
         </div>

@@ -24,6 +24,8 @@ namespace ITS.DAL.Model
         public string Description { get; set; }
         public Nullable<int> MechanicID { get; set; }
         public Nullable<int> ReceivingPersonID { get; set; }
+        public Nullable<int> ResultType { get; set; }
+        public string ResultDescription { get; set; }
         public Nullable<System.DateTime> InsertDate { get; set; }
         public Nullable<int> InsertUser { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }

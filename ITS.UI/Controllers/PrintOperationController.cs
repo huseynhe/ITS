@@ -43,8 +43,8 @@ namespace ITS.UI.Controllers
             viewModel.PlanedCareTypeDesc = careTrackingDTO.PlanedCareTypeDesc;
             viewModel.CareTeamType = careTrackingDTO.CareTeamType;
             viewModel.CareTeamTypeDesc = careTrackingDTO.CareTeamTypeDesc;
-            viewModel.ResultTypeDesc = careTrackingDTO.ResultTypeDesc;
-            viewModel.ResultDescription = careTrackingDTO.ResultDescription;
+            //viewModel.ResultTypeDesc = careTrackingDTO.ResultTypeDesc;
+            //viewModel.ResultDescription = careTrackingDTO.ResultDescription;
 
             viewModel.RCareTrackingDetailList = repository.GetCareTrackingDetailsByCTID(careTrackingDTO.CareTrackingID);
 
