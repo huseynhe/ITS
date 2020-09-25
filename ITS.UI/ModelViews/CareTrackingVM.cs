@@ -67,6 +67,8 @@ namespace ITS.UI.ModelViews
         public DateTime? EndDate { get; set; }
         [Display(Name = "Bitiş zamanı")]
         public TimeSpan? EndTime { get; set; }
+        [Display(Name = "Keçən zaman")]
+        public string DurationTime { get; set; }
         [Display(Name = "Aciqlama")]
         public string Description { get; set; }
 

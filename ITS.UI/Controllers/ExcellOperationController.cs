@@ -145,7 +145,7 @@ namespace ITS.UI.Controllers
             Sheet.Cells[2, 12].Style.Font.Size = 12;
             Sheet.Cells[2, 12].Style.Font.Color.SetColor(Color.Black);
 
-            Sheet.Cells[2, 13].Value = "Aciqlama";
+            Sheet.Cells[2, 13].Value = "Keçən zaman";
             Sheet.Cells[2, 13].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[2, 13].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             Sheet.Cells[2, 13].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
@@ -153,7 +153,7 @@ namespace ITS.UI.Controllers
             Sheet.Cells[2, 13].Style.Font.Size = 12;
             Sheet.Cells[2, 13].Style.Font.Color.SetColor(Color.Black);
 
-            Sheet.Cells[2, 14].Value = "Mexanik(Soyad Ad Ata adı)";
+            Sheet.Cells[2, 14].Value = "Aciqlama";
             Sheet.Cells[2, 14].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[2, 14].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             Sheet.Cells[2, 14].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
@@ -161,7 +161,7 @@ namespace ITS.UI.Controllers
             Sheet.Cells[2, 14].Style.Font.Size = 12;
             Sheet.Cells[2, 14].Style.Font.Color.SetColor(Color.Black);
 
-            Sheet.Cells[2, 15].Value = "Təhvil alan şexs (Soyad Ad Ata adı)";
+            Sheet.Cells[2, 15].Value = "Mexanik(Soyad Ad Ata adı)";
             Sheet.Cells[2, 15].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[2, 15].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             Sheet.Cells[2, 15].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
@@ -169,7 +169,7 @@ namespace ITS.UI.Controllers
             Sheet.Cells[2, 15].Style.Font.Size = 12;
             Sheet.Cells[2, 15].Style.Font.Color.SetColor(Color.Black);
 
-            Sheet.Cells[2, 16].Value = "Nəticə";
+            Sheet.Cells[2, 16].Value = "Təhvil alan şexs (Soyad Ad Ata adı)";
             Sheet.Cells[2, 16].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[2, 16].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             Sheet.Cells[2, 16].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
@@ -177,13 +177,21 @@ namespace ITS.UI.Controllers
             Sheet.Cells[2, 16].Style.Font.Size = 12;
             Sheet.Cells[2, 16].Style.Font.Color.SetColor(Color.Black);
 
-            Sheet.Cells[2, 17].Value = "Nəticə təsviri";
+            Sheet.Cells[2, 17].Value = "Nəticə";
             Sheet.Cells[2, 17].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[2, 17].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             Sheet.Cells[2, 17].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
             Sheet.Cells[2, 17].Style.Font.Bold = true;
             Sheet.Cells[2, 17].Style.Font.Size = 12;
             Sheet.Cells[2, 17].Style.Font.Color.SetColor(Color.Black);
+
+            Sheet.Cells[2, 18].Value = "Nəticə təsviri";
+            Sheet.Cells[2, 18].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            Sheet.Cells[2, 18].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            Sheet.Cells[2, 18].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+            Sheet.Cells[2, 18].Style.Font.Bold = true;
+            Sheet.Cells[2, 18].Style.Font.Size = 12;
+            Sheet.Cells[2, 18].Style.Font.Color.SetColor(Color.Black);
             #endregion
 
             int rowcounter = 2;
@@ -316,16 +324,15 @@ namespace ITS.UI.Controllers
                         Sheet.Cells[rowcounter, 13].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         Sheet.Cells[rowcounter, 13].Style.Fill.BackgroundColor.SetColor(Color.Coral);
                     }
-                    Sheet.Cells[rowcounter, 13].Value = careTracking.careTrackingDetailDTO.Description;
+                    Sheet.Cells[rowcounter, 13].Value = careTracking.careTrackingDetailDTO.DurationTime;
                     Sheet.Cells[rowcounter, 13].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
                     Sheet.Cells[rowcounter, 13].Style.Font.Size = 12;
-
                     if (flagResultType)
                     {
                         Sheet.Cells[rowcounter, 14].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         Sheet.Cells[rowcounter, 14].Style.Fill.BackgroundColor.SetColor(Color.Coral);
                     }
-                    Sheet.Cells[rowcounter, 14].Value = careTracking.careTrackingDetailDTO.MechanicSAA;
+                    Sheet.Cells[rowcounter, 14].Value = careTracking.careTrackingDetailDTO.Description;
                     Sheet.Cells[rowcounter, 14].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
                     Sheet.Cells[rowcounter, 14].Style.Font.Size = 12;
 
@@ -334,7 +341,7 @@ namespace ITS.UI.Controllers
                         Sheet.Cells[rowcounter, 15].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         Sheet.Cells[rowcounter, 15].Style.Fill.BackgroundColor.SetColor(Color.Coral);
                     }
-                    Sheet.Cells[rowcounter, 15].Value = careTracking.careTrackingDetailDTO.ReceivingPersonSAA;
+                    Sheet.Cells[rowcounter, 15].Value = careTracking.careTrackingDetailDTO.MechanicSAA;
                     Sheet.Cells[rowcounter, 15].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
                     Sheet.Cells[rowcounter, 15].Style.Font.Size = 12;
 
@@ -343,18 +350,27 @@ namespace ITS.UI.Controllers
                         Sheet.Cells[rowcounter, 16].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         Sheet.Cells[rowcounter, 16].Style.Fill.BackgroundColor.SetColor(Color.Coral);
                     }
-                    Sheet.Cells[rowcounter, 16].Value = careTracking.careTrackingDetailDTO.ResultTypeDesc;
-                    Sheet.Cells[rowcounter, 16].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    Sheet.Cells[rowcounter, 16].Value = careTracking.careTrackingDetailDTO.ReceivingPersonSAA;
+                    Sheet.Cells[rowcounter, 16].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
                     Sheet.Cells[rowcounter, 16].Style.Font.Size = 12;
-                   
+
                     if (flagResultType)
                     {
                         Sheet.Cells[rowcounter, 17].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         Sheet.Cells[rowcounter, 17].Style.Fill.BackgroundColor.SetColor(Color.Coral);
                     }
-                    Sheet.Cells[rowcounter, 17].Value = careTracking.careTrackingDetailDTO.ResultDescription;
-                    Sheet.Cells[rowcounter, 17].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                    Sheet.Cells[rowcounter, 17].Value = careTracking.careTrackingDetailDTO.ResultTypeDesc;
+                    Sheet.Cells[rowcounter, 17].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     Sheet.Cells[rowcounter, 17].Style.Font.Size = 12;
+                   
+                    if (flagResultType)
+                    {
+                        Sheet.Cells[rowcounter, 18].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        Sheet.Cells[rowcounter, 18].Style.Fill.BackgroundColor.SetColor(Color.Coral);
+                    }
+                    Sheet.Cells[rowcounter, 18].Value = careTracking.careTrackingDetailDTO.ResultDescription;
+                    Sheet.Cells[rowcounter, 18].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                    Sheet.Cells[rowcounter, 18].Style.Font.Size = 12;
                 }
        
 
@@ -365,7 +381,7 @@ namespace ITS.UI.Controllers
                 Sheet.Row(k).Height = 23;
                 Sheet.Row(k).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
             }
-            using (ExcelRange range = Sheet.Cells[1, 1, rowcounter, 17])
+            using (ExcelRange range = Sheet.Cells[1, 1, rowcounter, 18])
             {
                 range.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 range.Style.Border.Top.Color.SetColor(Color.Gray);

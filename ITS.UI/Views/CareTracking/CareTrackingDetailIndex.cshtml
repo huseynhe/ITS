@@ -38,6 +38,9 @@
                             <th class="col-md-1">
                                 @Html.DisplayNameFor(model => model.EndTime)
                             </th>
+                            <th class="col-md-1">
+                                @Html.DisplayNameFor(model => model.DurationTime)
+                            </th>
                             <th class="col-md-2">
                                 @Html.DisplayNameFor(model => model.Description)
                             </th>
@@ -59,42 +62,45 @@
 
                         @foreach (var item in Model.RCareTrackingDetailList)
                         {
-                            <tr>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.StartDate)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.StartTime)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.EndDate)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.EndTime)
-                                </td>
-                                <td class="col-md-2">
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.MechanicSAA)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.ReceivingPersonSAA)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.ResultTypeDesc)
-                                </td>
-                                <td class="col-md-1">
-                                    @Html.DisplayFor(modelItem => item.ResultDescription)
-                                </td>
-                                <td class="col-md-2 shsingle text-left" style="font-size:16px;">
+                    <tr>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.EndTime)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.DurationTime)
+                        </td>
+                        <td class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.MechanicSAA)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.ReceivingPersonSAA)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.ResultTypeDesc)
+                        </td>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.ResultDescription)
+                        </td>
+                        <td class="col-md-2 shsingle text-left" style="font-size:16px;">
 
-                                    <a class="btn btn-primary active btn-xs" data-toggle="tooltip" title="redaktə et" href="@Url.Action("EditCareTrackingDetail","CareTracking", new { ctDetailId = item.CareTrackingDetailID})"><span class="fa fa-pencil"></span></a>
-                                    <span title="sil"> @Html.ActionLink(" ", "DeleteCareTrackingDetail", "CareTracking", new { ctDetailId = item.CareTrackingDetailID, ctId = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi');", @class = "glyphicon glyphicon-trash" })</span>
+                            <a class="btn btn-primary active btn-xs" data-toggle="tooltip" title="redaktə et" href="@Url.Action("EditCareTrackingDetail","CareTracking", new { ctDetailId = item.CareTrackingDetailID})"><span class="fa fa-pencil"></span></a>
+                            <span title="sil"> @Html.ActionLink(" ", "DeleteCareTrackingDetail", "CareTracking", new { ctDetailId = item.CareTrackingDetailID, ctId = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi');", @class = "glyphicon glyphicon-trash" })</span>
 
-                                </td>
+                        </td>
 
-                            </tr>
+                    </tr>
 
                         }
                     </tbody>

@@ -53,10 +53,11 @@ namespace ITS.DAL.Repositories
             StringBuilder allQuery = new StringBuilder();
 
             var query = @"SELECT " + head + @"   from dbo.tbl_CareTracking ct
+	                                               left join dbo.tbl_CareTrackingDetail ctd on ct.ID =ctd.CareTrackingID  and ctd.Status=1
                                                     left join dbo.tbl_BusinessCenter bc on ct.BusinessCenterID=bc.ID and bc.Status=1
                                                     left join dbo.tbl_MachineGroup mg on ct.MachineGroupID=mg.ID and mg.Status=1
                                                     left join dbo.tbl_Machine  m on ct.MachineID=m.ID and m.Status=1
-                                                  where ct.Status=1";
+                                                  where ct.Status=1 and  (ctd.ResultType is null or  ctd.ResultType!=5)";
             allQuery.Append(query);
 
             string queryNameBC = @" and  bc.Name like N'%'+@P_BusinessCenterName+'%'";
@@ -257,9 +258,11 @@ namespace ITS.DAL.Repositories
                             CareTrackingDetailID = reader.GetInt32OrDefaultValue(0),
                             CareTrackingID = reader.GetInt32OrDefaultValue(1),
                             StartDate = reader.GetDateTimeOrEmpty(2),
-                            StartTime = reader.GetTimeSpan(3),
+
+                            HasStartTime = reader.IsDBNull(3),
                             EndDate = reader.GetDateTimeOrEmpty(4),
-                            EndTime = reader.GetTimeSpan(5),
+
+                            HasEndTime = reader.IsDBNull(5),
                             Description = reader.GetStringOrEmpty(6),
                             MechanicID = reader.GetInt32OrDefaultValue(7),
                             MechanicSAA = reader.GetStringOrEmpty(8),
@@ -270,6 +273,48 @@ namespace ITS.DAL.Repositories
                             ResultTypeDesc = reader.GetStringOrEmpty(12),
                             ResultDescription = reader.GetStringOrEmpty(13),
                         };
+                        if (!careTrackingDetailDTO.HasStartTime)
+                        {
+
+                            careTrackingDetailDTO.StartTime = reader.GetTimeSpan(3);
+                            if (careTrackingDetailDTO.StartDate != null)
+                            {
+                                careTrackingDetailDTO.FullStartDate = ((DateTime)careTrackingDetailDTO.StartDate) + careTrackingDetailDTO.StartTime;
+                            }
+                        }
+                        if (!careTrackingDetailDTO.HasEndTime)
+                        {
+
+                            careTrackingDetailDTO.EndTime = reader.GetTimeSpan(5);
+                            if (careTrackingDetailDTO.EndDate != null)
+                            {
+                                careTrackingDetailDTO.FullEndDate = ((DateTime)careTrackingDetailDTO.EndDate) + careTrackingDetailDTO.EndTime;
+                            }
+                        }
+
+
+                        TimeSpan span = careTrackingDetailDTO.FullEndDate.Subtract(careTrackingDetailDTO.FullStartDate);
+                        StringBuilder durationTime = new StringBuilder();
+                        careTrackingDetailDTO.DurationTime = String.Format("{0} saat", span.Hours);
+                        if (span.Days > 0)
+                        {
+                            durationTime.Append(String.Format("{0} Gün ", span.Days));
+
+                        }
+                        if (span.Hours > 0)
+                        {
+                            durationTime.Append(String.Format("{0} Saat ", span.Hours));
+
+                        }
+                        if (span.Minutes > 0)
+                        {
+                            durationTime.Append(String.Format("{0} Dəqiqə ", span.Minutes));
+
+                        }
+                        if (durationTime.Length != 0)
+                        {
+                            careTrackingDetailDTO.DurationTime = durationTime.ToString();
+                        }
 
                         result.Add(careTrackingDetailDTO);
                     }
@@ -412,17 +457,47 @@ namespace ITS.DAL.Repositories
                                     ResultDescription = reader.GetStringOrEmpty(28),
                                 }
                             };
-                            if (careTrackingDTO.careTrackingDetailDTO!=null)
+                            if (careTrackingDTO.careTrackingDetailDTO.CareTrackingDetailID>0)
                             {
                                 if (!careTrackingDTO.careTrackingDetailDTO.HasStartTime)
                                 {
                                     careTrackingDTO.careTrackingDetailDTO.StartTime = reader.GetTimeSpan(18);
                                     careTrackingDTO.careTrackingDetailDTO.StartTimeDesc = reader.GetTimeSpan(18).ToString(@"hh\:mm"); ;
+                                    if (careTrackingDTO.careTrackingDetailDTO.StartDate != null)
+                                    {
+                                        careTrackingDTO.careTrackingDetailDTO.FullStartDate = ((DateTime)careTrackingDTO.careTrackingDetailDTO.StartDate) + careTrackingDTO.careTrackingDetailDTO.StartTime;
+                                    }
                                 }
                                 if (!careTrackingDTO.careTrackingDetailDTO.HasEndTime)
                                 {
                                     careTrackingDTO.careTrackingDetailDTO.EndTime = reader.GetTimeSpan(20);
                                     careTrackingDTO.careTrackingDetailDTO.EndTimeDesc = reader.GetTimeSpan(20).ToString(@"hh\:mm"); ;
+                                    if (careTrackingDTO.careTrackingDetailDTO.EndDate != null)
+                                    {
+                                        careTrackingDTO.careTrackingDetailDTO.FullEndDate = ((DateTime)careTrackingDTO.careTrackingDetailDTO.EndDate) + careTrackingDTO.careTrackingDetailDTO.EndTime;
+                                    }
+                                }
+                                TimeSpan span = careTrackingDTO.careTrackingDetailDTO.FullEndDate.Subtract(careTrackingDTO.careTrackingDetailDTO.FullStartDate);
+                                StringBuilder durationTime = new StringBuilder();
+                                careTrackingDTO.careTrackingDetailDTO.DurationTime = String.Format("{0} saat", span.Hours);
+                                if (span.Days > 0)
+                                {
+                                    durationTime.Append(String.Format("{0} Gün ", span.Days));
+
+                                }
+                                if (span.Hours > 0)
+                                {
+                                    durationTime.Append(String.Format("{0} Saat ", span.Hours));
+
+                                }
+                                if (span.Minutes > 0)
+                                {
+                                    durationTime.Append(String.Format("{0} Dəqiqə ", span.Minutes));
+
+                                }
+                                if (durationTime.Length != 0)
+                                {
+                                    careTrackingDTO.careTrackingDetailDTO.DurationTime = durationTime.ToString();
                                 }
                             }
                             result.Add(careTrackingDTO);

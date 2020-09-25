@@ -122,6 +122,7 @@
                     <th>@Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label" })</th>
                     <th>@Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })</th>
                     <th>@Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label" })</th>
+                    <th>@Html.LabelFor(model => model.DurationTime, htmlAttributes: new { @class = "control-label" })</th>
                     <th>@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })</th>
 
 
@@ -136,47 +137,54 @@
                     }
 
 
-                    <tr>
+                                <tr>
 
-                        <td>
-                            @rowNumberCTD
-                        </td>
-                        <td rowspan="2">
-                            @{if (careTrackingDetailDTO != null)
-                                { @careTrackingDetailDTO.StartDate }
+                                    <td>
+                                        @rowNumberCTD
+                                    </td>
+                                    <td rowspan="2">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.StartDate }
 
-                            }
+                                        }
 
-                        </td>
-                        <td rowspan="2">
-                            @{if (careTrackingDetailDTO != null)
-                                { @careTrackingDetailDTO.StartTime }
+                                    </td>
+                                    <td rowspan="2">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.StartTime }
 
-                            }
+                                        }
 
-                        </td>
-                        <td rowspan="2">
-                            @{if (careTrackingDetailDTO != null)
-                                { @careTrackingDetailDTO.EndDate }
+                                    </td>
+                                    <td rowspan="2">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.EndDate }
 
-                            }
+                                        }
 
-                        </td>
-                        <td rowspan="2">
-                            @{if (careTrackingDetailDTO != null)
-                                { @careTrackingDetailDTO.EndTime }
+                                    </td>
+                                    <td rowspan="2">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.EndTime }
 
-                            }
+                                        }
 
-                        </td>
-                        <td rowspan="2" style="width:100%">
-                            @{if (careTrackingDetailDTO != null)
-                                { @careTrackingDetailDTO.Description }
+                                    </td>
+                                    <td rowspan="2">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.DurationTime }
 
-                            }
-                        </td>
+                                        }
 
-                    </tr>
+                                    </td>
+                                    <td rowspan="2" style="width:100%">
+                                        @{if (careTrackingDetailDTO != null)
+                                            { @careTrackingDetailDTO.Description }
+
+                                        }
+                                    </td>
+
+                                </tr>
 
 
 

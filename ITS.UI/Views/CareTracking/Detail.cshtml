@@ -119,6 +119,7 @@
                 <th>@Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label" })</th>
                 <th>@Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })</th>
                 <th>@Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label" })</th>
+                <th>@Html.LabelFor(model => model.DurationTime, htmlAttributes: new { @class = "control-label" })</th>
                 <th>@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })</th>
                 <th>@Html.LabelFor(model => model.MechanicID, htmlAttributes: new { @class = "control-label" })</th>
                 <th>@Html.LabelFor(model => model.ReceivingPersonID, htmlAttributes: new { @class = "control-label" })</th>
@@ -127,33 +128,36 @@
             @{ int rowNumberCTD = 1;
                 foreach (var item in Model.RCareTrackingDetailList)
                 {
-                    <tr>
+                        <tr>
 
-                        <td>
-                            @rowNumberCTD
-                        </td>
-                        <td>
-                            @item.StartDate
-                        </td>
-                        <td>
-                            @item.StartTime
-                        </td>
-                        <td>
-                            @item.EndDate
-                        </td>
-                        <td>
-                            @item.EndTime
-                        </td>
-                        <td>
-                            @item.Description
-                        </td>
-                        <td>
-                            @item.MechanicSAA
-                        </td>
-                        <td>
-                            @item.ReceivingPersonSAA
-                        </td>
-                    </tr>
+                            <td>
+                                @rowNumberCTD
+                            </td>
+                            <td>
+                                @item.StartDate
+                            </td>
+                            <td>
+                                @item.StartTime
+                            </td>
+                            <td>
+                                @item.EndDate
+                            </td>
+                            <td>
+                                @item.EndTime
+                            </td>
+                            <td>
+                                @item.DurationTime
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                @item.MechanicSAA
+                            </td>
+                            <td>
+                                @item.ReceivingPersonSAA
+                            </td>
+                        </tr>
                     rowNumberCTD = rowNumberCTD + 1;
                 }
             }
