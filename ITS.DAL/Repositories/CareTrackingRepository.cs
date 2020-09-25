@@ -379,6 +379,13 @@ namespace ITS.DAL.Repositories
 					where ct.Status=1 ";
             allQuery.Append(query);
 
+            string queryID = @" and  ct.ID =@P_ID";
+            if (search.Id>0)
+            {
+                allQuery.Append(queryID);
+            }
+
+
             string queryNameBC = @" and  bc.Name like N'%'+@P_BusinessCenterName+'%'";
             if (!string.IsNullOrEmpty(search.BusinessCenterName))
             {
@@ -412,6 +419,7 @@ namespace ITS.DAL.Repositories
 
                 using (var command = new SqlCommand(allQuery.ToString(), connection))
                 {
+                    command.Parameters.AddWithValue("@P_ID", search.Id);
                     command.Parameters.AddWithValue("@P_BusinessCenterName", search.BusinessCenterName.GetStringOrEmptyData());
                     command.Parameters.AddWithValue("@P_MachineGroupName", search.MachineGroupName.GetStringOrEmptyData());
                     command.Parameters.AddWithValue("@P_MachineName", search.MachineName.GetStringOrEmptyData());

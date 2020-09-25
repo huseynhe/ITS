@@ -21,7 +21,7 @@
             <td class="col-md-1">
                 @Html.DisplayFor(modelItem => item.CareDate)
             </td>
-            <td class="col-md-2">
+            <td class="col-md-1">
                 @Html.DisplayFor(modelItem => item.BusinessCenterName)
             </td>
             <td class="col-md-1">
@@ -48,6 +48,7 @@
                 <span title="Sil"> @Html.ActionLink(" ", "Delete", "CareTracking", new { id = item.CareTrackingID }, new { @onclick = "return confirm('Silmək istədiyinizə əminsinizmi?.');", @class = "btn btn-xs glyphicon glyphicon-trash primary" })</span>
                 <a class="btn btn-xs primary" data-toggle="tooltip" onclick="createModal('@Url.Action("Detail","CareTracking", new { careTrackingID = item.CareTrackingID})')"><span title="Detallara bax" class="fa fa-info"></span></a>
                 <a class="btn btn-xs primary" data-toggle="tooltip" title="Detay listəsi" href="@Url.Action("CareTrackingDetailIndex","CareTracking", new { careTrackingID = item.CareTrackingID})"><span class="fa fa-table"></span></a>
+                <a class="btn btn-xs primary" data-toggle="tooltip" title="Excele yüklə" href="@Url.Action("DownloadExcel","ExcellOperation", new { careTrackingID = item.CareTrackingID})"><span class="fa fa-file-excel-o"></span></a>
             </td>
 
         </tr>

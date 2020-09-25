@@ -21,12 +21,16 @@ namespace ITS.UI.Controllers
             return View();
         }
 
-        public void DownloadExcel()
+        public void DownloadExcel(int? careTrackingID)
         {
             Search search = new Search();
 
-            //search = SetValue(page, vl, prm);
-
+            // search = SetValue(page, vl, prm);
+            if (careTrackingID!=null)
+            {
+                search.Id = (int)careTrackingID;
+            }
+      
             //int pageSize = 15;
             //int pageNumber = (page ?? 1);
 
@@ -38,7 +42,7 @@ namespace ITS.UI.Controllers
             ExcelWorksheet Sheet = Ep.Workbook.Worksheets.Add("Baxim Izləmə");
 
             #region Əsas başlıq
-            Sheet.Cells[1, 1, 1, 10].Merge = true;
+            Sheet.Cells[1, 1, 1, 18].Merge = true;
             Sheet.Cells[1, 1].Value = "BAXIM İZLƏMƏ HESABATI";
             Sheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
             Sheet.Cells[1, 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
